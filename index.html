@@ -708,4 +708,518 @@
 
     footer a {
       color: var(--accent);
-      font-size: 12p
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- NAVBAR -->
+    <header>
+      <div class="nav">
+        <div class="logo">
+          <div class="logo-mark">Z</div>
+          <div class="logo-text">
+            <span>ZYORA</span>
+            <span>Architecture & Interiors</span>
+          </div>
+        </div>
+
+        <button class="nav-toggle" id="navToggle">
+          Menu <span>☰</span>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#services">Services</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
+          <a href="#contact">Contact</a>
+          <a
+            href="https://www.instagram.com/zyora.design"
+            target="_blank"
+            rel="noopener"
+            >Instagram</a
+          >
+          <button
+            class="btn-pill btn-primary"
+            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+          >
+            Book a Consultation
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div>
+          <div class="hero-pill">
+            <span class="hero-pill-dot"></span>
+            Tailored spaces for modern living
+          </div>
+          <h1>
+            Architecture & Interior Design<br />
+            for <span>homes</span>, <span>offices</span> and
+            <span>experiences</span>.
+          </h1>
+          <p class="hero-sub">
+            ZYORA crafts calm, minimal and function-first spaces—from 3D
+            visualizations to fully detailed drawings—so you can see your
+            project before it’s built.
+          </p>
+
+          <div class="hero-actions">
+            <button
+              class="btn-pill btn-primary"
+              onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"
+            >
+              View Selected Projects
+            </button>
+            <button
+              class="btn-pill btn-ghost"
+              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+            >
+              Schedule a Call
+            </button>
+          </div>
+
+          <div class="hero-meta">
+            <span>3D & 2D: 3ds Max · SketchUp · AutoCAD · V-Ray</span>
+            <span>Residential · Commercial · Interior Styling</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-visual-inner">
+            <div class="hero-bar">
+              <div class="hero-dots">
+                <span></span><span></span><span></span>
+              </div>
+              <div>Concept living room · ZYORA</div>
+            </div>
+            <div class="hero-grid">
+              <div class="hero-main-img"></div>
+              <div class="hero-side">
+                <div class="hero-tag">
+                  <strong>Warm Minimal Apartment</strong>
+                  2BHK living & dining concept with neutral palette, layered
+                  lighting and clean lines.
+                </div>
+                <div class="hero-stat">
+                  <div>
+                    <div style="font-size: 11px; color: var(--muted);">
+                      Avg. design timeline
+                    </div>
+                    <strong>3–6 weeks</strong>
+                  </div>
+                  <div style="text-align: right;">
+                    <div style="font-size:11px; color:var(--muted);">
+                      Concept to final drawings
+                    </div>
+                    <div style="font-size:12px;">Online & on-site</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hero-float">
+              <span></span>
+              3D visuals, moodboards and working drawings in one workflow.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Services</h2>
+            <p class="section-sub">
+              From first sketch to final handover, we provide end-to-end design
+              support for residential and commercial spaces.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div class="badge">
+              <span class="badge-dot"></span> Interior Design
+            </div>
+            <h3>Residential Interiors</h3>
+            <p>
+              Complete interior design for apartments, villas and independent
+              homes—planning, materials, lighting and furniture layouts.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Space planning</span>
+              <span class="chip">Furniture layouts</span>
+              <span class="chip">Lighting concepts</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="badge">
+              <span class="badge-dot"></span> Architecture
+            </div>
+            <h3>Architectural Planning</h3>
+            <p>
+              Facade concepts, planning, and 2D drawings that balance
+              functionality, structure and aesthetics for your site context.
+            </p>
+            <div class="chip-row">
+              <span class="chip">Floor plans</span>
+              <span class="chip">Elevations</span>
+              <span class="chip">3D exteriors</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="badge">
+              <span class="badge-dot"></span> Visualization
+            </div>
+            <h3>3D Renders & Walkthroughs</h3>
+            <p>
+              High-quality stills and short cinematic walkthroughs to help you
+              visualise the space before execution.
+            </p>
+            <div class="chip-row">
+              <span class="chip">V-Ray / Corona</span>
+              <span class="chip">4K renders</span>
+              <span class="chip">Short videos</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Selected Projects</h2>
+            <p class="section-sub">
+              A quick look at some recent residential and commercial design
+              concepts. Replace these with your own images and details.
+            </p>
+          </div>
+          <button
+            class="btn-pill btn-ghost"
+            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
+          >
+            Request full portfolio
+          </button>
+        </div>
+
+        <div class="grid-3">
+          <article class="card">
+            <div
+              class="project-img"
+              style="background-image:url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200');"
+            ></div>
+            <div class="project-meta">
+              <span>Minimal Living · 2BHK</span>
+              <span>Kozhikode · 2025</span>
+            </div>
+            <h3>Soft Modern Living Room</h3>
+            <p>
+              Calm neutral palette, layered warm lighting and built-in storage
+              to maximise comfort in a compact footprint.
+            </p>
+          </article>
+
+          <article class="card">
+            <div
+              class="project-img"
+              style="background-image:url('https://images.pexels.com/photos/6588294/pexels-photo-6588294.jpeg?auto=compress&cs=tinysrgb&w=1200');"
+            ></div>
+            <div class="project-meta">
+              <span>Work Cafe</span>
+              <span>2024</span>
+            </div>
+            <h3>Co-working Café Interior</h3>
+            <p>
+              Flexible seating, acoustic surfaces and subtle brand accents to
+              keep the space warm yet professional.
+            </p>
+          </article>
+
+          <article class="card">
+            <div
+              class="project-img"
+              style="background-image:url('https://images.pexels.com/photos/4041726/pexels-photo-4041726.jpeg?auto=compress&cs=tinysrgb&w=1200');"
+            ></div>
+            <div class="project-meta">
+              <span>Duplex Concept</span>
+              <span>2025</span>
+            </div>
+            <h3>Double-Height Stair Lobby</h3>
+            <p>
+              Clean vertical lines and natural light with a focus on railing
+              details and wall textures.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ABOUT & PROCESS -->
+      <section id="about">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">About ZYORA</h2>
+            <p class="section-sub">
+              A design-driven studio combining 3D visualization and technical
+              drawings so clients always know exactly what they’re getting.
+            </p>
+          </div>
+        </div>
+
+        <div class="about-layout">
+          <div class="card">
+            <h3 style="margin-bottom: 6px;">Studio</h3>
+            <p>
+              ZYORA is an architecture and interior design practice focused on
+              warm minimalism, clean geometry and practical detailing. From
+              early moodboards to final working drawings, every step is
+              documented and coordinated with your contractor.
+            </p>
+            <p>
+              We work with clients locally and remotely—sharing 3D visuals,
+              drawings and material boards online so decisions are easy and
+              clear.
+            </p>
+            <ul class="about-list">
+              <li>Software: 3ds Max, SketchUp, AutoCAD, V-Ray</li>
+              <li>Scope: Interiors, facades, planning and visualization</li>
+              <li>Deliverables: 3D renders, 2D drawings, basic BOQ support</li>
+            </ul>
+          </div>
+
+          <div>
+            <div class="card" style="margin-bottom: 14px;">
+              <h3 style="margin-bottom: 6px;">Design Process</h3>
+              <div class="process-steps">
+                <div class="process-step">
+                  <span>Step 01</span>
+                  <strong>Consult & Brief</strong>
+                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
+                    Site photos, measurements and a detailed discussion of your
+                    needs, style and budget.
+                  </p>
+                </div>
+                <div class="process-step">
+                  <span>Step 02</span>
+                  <strong>Concept & Layout</strong>
+                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
+                    Moodboards and initial layouts to lock flow, zoning and key
+                    elements.
+                  </p>
+                </div>
+                <div class="process-step">
+                  <span>Step 03</span>
+                  <strong>3D & Materials</strong>
+                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
+                    Detailed 3D views, colour palette, materials and
+                    lighting concepts.
+                  </p>
+                </div>
+                <div class="process-step">
+                  <span>Step 04</span>
+                  <strong>Drawings & Support</strong>
+                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
+                    Working drawings and basic coordination support during
+                    execution.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 style="margin-bottom: 4px;">Client Notes</h3>
+              <p class="testimonial">
+                “We could see every corner of our home in 3D before we started
+                execution. It made material and lighting decisions so much
+                easier.”
+              </p>
+              <div class="testimonial-footer">
+                — Sample client, 3BHK Interior Design
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Let’s talk about your space</h2>
+            <p class="section-sub">
+              Share a few details about your project and we’ll get back with an
+              approximate timeline, scope and next steps.
+            </p>
+          </div>
+        </div>
+
+        <div class="contact-layout">
+          <div class="card">
+            <form id="contact-form">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your full name" required />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  required
+                />
+              </div>
+              <div>
+                <label for="phone">Phone / WhatsApp</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  placeholder="+91-XXXXXXXXXX"
+                  required
+                />
+              </div>
+              <div>
+                <label for="type">Project type</label>
+                <input
+                  id="type"
+                  name="type"
+                  type="text"
+                  placeholder="2BHK interior / villa / office / café..."
+                />
+              </div>
+              <div>
+                <label for="message">Project details</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  placeholder="City, approx. area, new build or renovation, timeline, any references..."
+                ></textarea>
+              </div>
+              <button type="submit" class="btn-pill btn-primary">
+                Send enquiry
+              </button>
+            </form>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-item">
+              <span>Email</span>
+              <span><a href="mailto:zestyneo@gmail.com">zestyneo@gmail.com</a></span>
+            </div>
+            <div class="contact-item">
+              <span>Instagram</span>
+              <span
+                ><a
+                  href="https://www.instagram.com/zyora.design"
+                  target="_blank"
+                  rel="noopener"
+                  >@zyora.design</a
+                ></span
+              >
+            </div>
+            <div class="contact-item">
+              <span>Location</span>
+              <span>Kannur, Kerala · Remote projects welcome</span>
+            </div>
+            <div class="tag-row">
+              <span class="tag">Concept to drawings</span>
+              <span class="tag">Online reviews & revisions</span>
+              <span class="tag">Contractor-friendly outputs</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <span>© <span id="year"></span> ZYORA Studio. All rights reserved.</span>
+      <span>
+        Instagram:
+        <a
+          href="https://www.instagram.com/zyora.design"
+          target="_blank"
+          rel="noopener"
+          >@zyora.design</a
+        >
+      </span>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.getElementById("navToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    if (navToggle) {
+      navToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
+      });
+    }
+
+    // Close nav on link click (mobile)
+    navLinks?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+      });
+    });
+
+    // Year in footer
+    const yearEl = document.getElementById("year");
+    if (yearEl) {
+      yearEl.textContent = new Date().getFullYear().toString();
+    }
+
+    // Contact form → Google Apps Script
+    const form = document.getElementById("contact-form");
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
+
+    if (form && scriptURL) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const submitButton = form.querySelector("button[type='submit']");
+        const originalText = submitButton.textContent;
+        submitButton.textContent = "Sending...";
+        submitButton.disabled = true;
+
+        try {
+          const formData = new FormData(form);
+          const response = await fetch(scriptURL, {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            alert("Thank you! Your enquiry has been sent.");
+            form.reset();
+          } else {
+            alert(
+              "Something went wrong. Please try again or email us at zestyneo@gmail.com."
+            );
+          }
+        } catch (err) {
+          alert(
+            "Network error. Please try again or email us at zestyneo@gmail.com."
+          );
+        } finally {
+          submitButton.textContent = originalText;
+          submitButton.disabled = false;
+        }
+      });
+    }
+  </script>
+</body>
+</html>
