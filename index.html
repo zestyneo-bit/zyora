@@ -24,6 +24,8 @@
 
   // Contact form → Google Apps Script
   const form = document.getElementById("contact-form");
+
+  // Your LIVE Apps Script URL
   const scriptURL =
     "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
 
@@ -39,7 +41,7 @@
       try {
         const formData = new FormData(form);
 
-        // no-cors avoids browser blocking the request
+        // no-cors prevents browser from blocking the request
         await fetch(scriptURL, {
           method: "POST",
           body: formData,
