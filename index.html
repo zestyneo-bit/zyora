@@ -2,220 +2,120 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>ZYORA Studio — Architecture & Interiors</title>
+  <title>ZYORA Studio — Contact & Portfolio</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ZYORA — Interior & Architectural design studio. Contemporary residential and commercial design." />
-  <meta name="theme-color" content="#071018" />
+  <meta name="description" content="ZYORA Studio — Interior & Architectural design. Contact us." />
   <style>
-    /* -------------------------
-       ZYORA — full site styles
-       Single-file, responsive, dark theme
-       ------------------------- */
     :root{
-      --bg:#030617;
-      --card:#071018;
-      --muted:#9aa4ad;
-      --accent:#38bdf8;
-      --accent-2:#4bb3ff;
-      --glass: rgba(255,255,255,0.03);
-      --radius:14px;
-      --maxw:1200px;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color-scheme: dark;
-      color:#e6eef6;
+      --bg:#030617; --card:#071018; --muted:#9aa4ad; --accent:#38bdf8; --glass: rgba(255,255,255,0.03);
+      --radius:12px; --maxw:1100px; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
     }
-    * { box-sizing: border-box; }
-    html,body { height:100%; margin:0; background: radial-gradient(circle at top,#07101a 0%, #020617 80%); -webkit-font-smoothing:antialiased; }
-    a{ color:var(--accent); text-decoration:none }
-    .container{ max-width:var(--maxw); margin:0 auto; padding:36px 20px; }
+    *{box-sizing:border-box}
+    body{margin:0; min-height:100vh; background:linear-gradient(180deg,#051026,#020617); color:#e6eef6; -webkit-font-smoothing:antialiased}
+    .container{max-width:var(--maxw); margin:0 auto; padding:28px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#00d4ff,#3b8fff);display:flex;align-items:center;justify-content:center;font-weight:800;color:#001}
+    .lead{color:var(--muted); font-size:13px; margin:0}
 
-    /* header */
-    header{ display:flex; align-items:center; justify-content:space-between; gap:18px; margin-bottom:28px; }
-    .brand{ display:flex; align-items:center; gap:12px }
-    .logo{ width:48px; height:48px; border-radius:10px; background:linear-gradient(135deg,#00d4ff,#3b8fff); display:flex; align-items:center; justify-content:center; color:#001; font-weight:800 }
-    .site-title{ line-height:1; }
-    .site-title h1{ margin:0; font-size:18px }
-    .site-title p{ margin:0; color:var(--muted); font-size:13px }
-
-    nav .nav-links{ display:flex; gap:12px; align-items:center }
-    nav .nav-links a{ padding:8px 12px; border-radius:8px; background:transparent; font-size:14px; color:var(--muted) }
-    nav .nav-cta{ background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:#021224; font-weight:700; padding:8px 12px; border-radius:10px; }
-
-    /* hero */
-    .hero{ display:grid; grid-template-columns: 1fr 420px; gap:28px; align-items:stretch; margin-bottom:28px; }
-    .hero-left{ padding:28px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:16px; border:1px solid var(--glass); box-shadow:0 20px 60px rgba(0,0,0,0.6) }
-    .hero-left h2{ margin:0 0 10px 0; font-size:28px }
-    .hero-left p.lead{ margin:0 0 18px 0; color:var(--muted) }
-
-    .hero-right{ display:flex; flex-direction:column; gap:14px; }
-    .hero-image{ background-image: url('https://images.unsplash.com/photo-1549187774-b4a2ca1f2b3d?q=80&w=1600&auto=format&fit=crop&crop=entropy'); background-size:cover; background-position:center; border-radius:12px; min-height:220px; border:1px solid var(--glass) }
-
-    /* two-column sections */
-    .grid-2{ display:grid; grid-template-columns: 1fr 420px; gap:22px; }
-
-    .card{ background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:18px; border:1px solid var(--glass); box-shadow:0 18px 40px rgba(0,0,0,0.6) }
-
-    /* services */
-    .services{ display:grid; grid-template-columns: repeat(3,1fr); gap:14px; margin-top:14px }
-    .service{ padding:16px; border-radius:12px; background:rgba(255,255,255,0.012); border:1px solid rgba(255,255,255,0.02) }
-    .service h4{ margin:6px 0 6px 0 }
-    .service p{ margin:0; color:var(--muted); font-size:14px }
+    main{display:grid;grid-template-columns:1fr 400px;gap:18px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:18px; border:1px solid var(--glass)}
+    h1,h2,h3{margin:0 0 8px 0}
 
     /* portfolio */
-    .portfolio-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap:10px; margin-top:12px }
-    .portfolio-item{ position:relative; border-radius:10px; overflow:hidden; min-height:160px; cursor:pointer; border:1px solid rgba(255,255,255,0.02) }
-    .portfolio-item img{ width:100%; height:100%; object-fit:cover; display:block }
-    .portfolio-item .meta{ position:absolute; left:12px; bottom:12px; color:#fff; background:rgba(0,0,0,0.4); padding:6px 8px; border-radius:8px; font-weight:600 }
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+    .portfolio-item{border-radius:10px;overflow:hidden;min-height:120px}
+    .portfolio-item img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* testimonials/team */
-    .row{ display:flex; gap:12px; }
-    .team-member{ display:flex; gap:12px; align-items:center }
-    .avatar{ width:56px; height:56px; border-radius:10px; background:linear-gradient(135deg,#6ee7b7,#60a5fa); display:flex; align-items:center; justify-content:center; color:#032; font-weight:800 }
+    /* contact form */
+    form label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+    input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:var(--card);color:var(--muted);font-size:14px}
+    textarea{min-height:120px;resize:vertical}
+    .row{display:flex;gap:12px}
+    .col{flex:1}
 
-    /* contact form (full from earlier) */
-    form label{ font-size:13px; color:var(--muted); margin-bottom:6px; display:block }
-    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
-      background:var(--card); border:1px solid rgba(255,255,255,0.03); color:var(--muted); padding:10px 12px; border-radius:10px; width:100%;
+    /* country selector + phone */
+    .phone-row{display:flex;gap:10px;align-items:center}
+    .country-select{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:var(--card);cursor:pointer;min-width:140px;position:relative}
+    .country-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;z-index:120;background:var(--card);border-radius:10px;padding:6px;max-height:280px;overflow:auto;border:1px solid rgba(255,255,255,0.03)}
+    .country-menu li{list-style:none;padding:8px;border-radius:6px;cursor:pointer;color:var(--muted)}
+    .country-menu li:hover{background:rgba(255,255,255,0.02);color:#fff}
+    .phone-hint{font-size:13px;color:#f3b0b0;min-height:18px;margin-top:6px}
+
+    button[type="submit"]{background:linear-gradient(90deg,var(--accent),#4bb3ff);color:#021224;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    .muted{color:var(--muted);font-size:13px}
+
+    @media(max-width:980px){
+      main{grid-template-columns:1fr}
+      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
     }
-    textarea{ min-height:110px; resize:vertical; color:var(--muted) }
-
-    .form-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px }
-    .form-row{ display:flex; gap:12px; align-items:center }
-
-    /* compact country selector */
-    .phone-row-compact{ display:flex; gap:10px; align-items:center }
-    .country-select{
-      display:flex; align-items:center; gap:8px; padding:8px 12px; border-radius:10px; background:var(--panel); color:#e6eef6; border:1px solid rgba(255,255,255,0.03); cursor:pointer; position:relative; min-width:130px; justify-content:center;
-    }
-    .country-menu{
-      display:none; position:absolute; top:calc(100% + 8px); left:0; z-index:200; background:var(--panel); border:1px solid rgba(255,255,255,0.03); border-radius:10px; min-width:240px; max-height:320px; overflow:auto; padding:6px;
-    }
-    .country-menu li{ list-style:none; padding:8px; border-radius:6px; cursor:pointer; display:flex; gap:8px; align-items:center; color:var(--muted) }
-    .country-menu li:hover{ background:rgba(255,255,255,0.02); color:#fff }
-    .phone-hint{ color:#f5b0b0; font-size:13px; margin-top:6px; min-height:18px }
-
-    .submit-row{ display:flex; gap:12px; align-items:center; margin-top:12px }
-
-    footer{ margin-top:40px; padding:20px 0; color:var(--muted); font-size:13px; text-align:center }
-
-    /* responsive */
-    @media (max-width:1024px){
-      .hero, .grid-2{ grid-template-columns: 1fr }
-      .services{ grid-template-columns: repeat(2,1fr) }
-      .portfolio-grid{ grid-template-columns: repeat(2,1fr) }
-    }
-    @media (max-width:640px){
-      .services{ grid-template-columns: 1fr }
-      .portfolio-grid{ grid-template-columns: 1fr }
+    @media(max-width:640px){
+      .portfolio-grid{grid-template-columns:1fr}
+      .row{flex-direction:column}
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- header -->
     <header>
-      <div class="brand">
+      <div style="display:flex;align-items:center;gap:12px">
         <div class="logo">ZY</div>
-        <div class="site-title">
-          <h1>ZYORA Studio — Interiors & Architecture</h1>
-          <p class="lead">Contemporary residential & commercial design — Kannur, Kerala. Email: <strong>zestyneo@gmail.com</strong></p>
+        <div>
+          <h1 style="margin:0">ZYORA Studio</h1>
+          <p class="lead">Architecture & Interiors — Kannur · zestyneo@gmail.com</p>
         </div>
       </div>
-
-      <nav class="nav">
-        <div class="nav-links">
-          <a href="#portfolio">Portfolio</a>
-          <a href="#services">Services</a>
-          <a href="#contact" class="nav-cta">Contact</a>
-        </div>
+      <nav>
+        <a href="#portfolio" class="muted" style="margin-right:12px">Portfolio</a>
+        <a href="#contact" class="muted">Contact</a>
       </nav>
     </header>
 
-    <!-- hero -->
-    <section class="hero">
-      <div class="hero-left card">
-        <h2>Designing functional, beautiful spaces</h2>
-        <p class="lead">We craft modern interiors and architectures that balance aesthetics and buildability. From concept to contractor-ready drawings — we handle the full process.</p>
-
-        <div style="display:flex;gap:12px;margin-top:16px;flex-wrap:wrap">
-          <div style="min-width:160px">
-            <strong>Residential</strong>
-            <div class="muted">Villas, apartments, 2BHK–4BHK</div>
-          </div>
-          <div style="min-width:160px">
-            <strong>Commercial</strong>
-            <div class="muted">Offices, cafes, retail</div>
-          </div>
-          <div style="min-width:160px">
-            <strong>Deliverables</strong>
-            <div class="muted">Concepts, drawings, contractor packs</div>
-          </div>
-        </div>
-      </div>
-
-      <aside class="hero-right">
-        <div class="hero-image card" role="img" aria-label="Sample interior"></div>
+    <main>
+      <!-- Left column: hero + portfolio -->
+      <section>
         <div class="card">
-          <strong>Start your project</strong>
-          <p class="muted" style="margin:8px 0 0 0">Send an enquiry, we respond with scope and initial timeline estimate.</p>
-        </div>
-      </aside>
-    </section>
+          <h2>Design that feels like home</h2>
+          <p class="muted">Contemporary interiors & architectural design. From concept to working drawings and contractor coordination.</p>
 
-    <!-- services + contact column -->
-    <section class="grid-2">
-      <div class="card">
-        <h3 id="services" style="margin-top:0">Services</h3>
-        <p class="muted">End-to-end design services tailored for buildability and aesthetic clarity.</p>
-
-        <div class="services">
-          <div class="service">
-            <div style="font-size:20px">Concept Design</div>
-            <h4>Concept & mood</h4>
-            <p>Initial concepts, material palettes and mood boards to shape the design direction.</p>
-          </div>
-          <div class="service">
-            <div style="font-size:20px">Detailed Drawings</div>
-            <h4>CAD & Working Drawings</h4>
-            <p>Construction-ready floor plans, elevations and technical details for contractors.</p>
-          </div>
-          <div class="service">
-            <div style="font-size:20px">Interior Fitout</div>
-            <h4>Furniture & Fitout</h4>
-            <p>Custom furniture design, finishes and site coordination with contractors.</p>
+          <h3 style="margin-top:16px">Portfolio</h3>
+          <div id="portfolio" class="portfolio-grid">
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1549187774-b4a2ca1f2b3d?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 1"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1505691723518-36a7b7a0490f?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 2"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 3"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 4"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 5"></div>
+            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 6"></div>
           </div>
         </div>
-      </div>
+      </section>
 
+      <!-- Right column: contact -->
       <aside class="card" id="contact">
-        <h3 style="margin-top:0">Contact / Enquiry</h3>
-        <p class="muted">Share a few details and we’ll respond with an approximate timeline & scope.</p>
+        <h3>Contact / Enquiry</h3>
+        <p class="muted">Share project details. We'll reply with a timeline and rough cost estimate.</p>
 
-        <!-- Contact form -->
         <form id="contact-form" autocomplete="on">
-          <div class="form-grid">
-            <div>
+          <div class="row" style="margin-top:12px">
+            <div class="col">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" placeholder="Your full name" required />
             </div>
-
-            <div>
+            <div class="col">
               <label for="email">Email</label>
               <input id="email" name="email" type="email" placeholder="you@example.com" required />
             </div>
           </div>
 
-          <!-- country + phone -->
           <div style="margin-top:12px">
             <label>Country & Phone</label>
-            <div class="phone-row-compact">
-              <div id="countrySelect" class="country-select" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+            <div class="phone-row">
+              <div id="countrySelect" class="country-select" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
                 <span id="countryFlag">🇮🇳</span>
                 <span id="countryCode">+91</span>
                 <span style="opacity:.8">▾</span>
 
-                <ul id="countryMenu" class="country-menu" aria-hidden="true" role="listbox" tabindex="-1">
-                  <!-- items are generated by JS; fallback static entries included for accessibility -->
+                <ul id="countryMenu" class="country-menu" aria-hidden="true" role="listbox">
+                  <!-- static fallback; JS will rebuild menu from array -->
                   <li data-code="+91" data-iso="IN" role="option">🇮🇳 India (+91)</li>
                   <li data-code="+1" data-iso="US" role="option">🇺🇸 United States (+1)</li>
                   <li data-code="+44" data-iso="GB" role="option">🇬🇧 United Kingdom (+44)</li>
@@ -234,64 +134,50 @@
             <input id="type" name="type" type="text" placeholder="2BHK / villa / office / café..." />
           </div>
 
+          <!-- Budget dropdown with Other option -->
           <div style="margin-top:12px">
-            <label for="budget">Budget (optional)</label>
-            <input id="budget" name="budget" type="text" placeholder="Estimated budget (optional)" />
+            <label for="budgetSelect">Budget (optional)</label>
+            <div style="display:flex;gap:8px;align-items:center">
+              <select id="budgetSelect" name="budgetSelect" aria-label="Budget">
+                <option value="">-- Select budget (optional) --</option>
+                <option value="Under ₹1L">Under ₹1L</option>
+                <option value="₹1L - ₹3L">₹1L - ₹3L</option>
+                <option value="₹3L - ₹7L">₹3L - ₹7L</option>
+                <option value="₹7L - ₹15L">₹7L - ₹15L</option>
+                <option value="₹15L+">₹15L+</option>
+                <option value="Other">Other (specify)</option>
+              </select>
+
+              <input id="budgetOther" name="budgetOther" type="text" placeholder="Enter your budget (e.g. ₹4,50,000)" style="display:none" />
+            </div>
+            <div class="muted" style="margin-top:6px">Choose a range or pick "Other" to enter a custom amount.</div>
           </div>
 
           <div style="margin-top:12px">
             <label for="message">Project details</label>
-            <textarea id="message" name="message" placeholder="City, area (sqft), references, timeline..." ></textarea>
+            <textarea id="message" name="message" placeholder="City, area (sqft), timeline, references..." ></textarea>
           </div>
 
+          <!-- hidden country field -->
           <input type="hidden" id="country" name="country" value="+91" />
 
-          <div class="submit-row">
+          <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
             <button type="submit">Send enquiry</button>
             <div class="muted">Or email: <strong>zestyneo@gmail.com</strong></div>
           </div>
         </form>
       </aside>
-    </section>
+    </main>
 
-    <!-- portfolio -->
-    <section class="card" style="margin-top:22px">
-      <h3 style="margin-top:0" id="portfolio">Portfolio</h3>
-      <p class="muted">Selected projects — interiors and small commercial spaces.</p>
-
-      <div class="portfolio-grid" style="margin-top:12px">
-        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1549187774-b4a2ca1f2b3d?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 1"><div class="meta">2BHK Interior</div></div>
-        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1505691723518-36a7b7a0490f?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 2"><div class="meta">Cozy Living</div></div>
-        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 3"><div class="meta">Cafe Interior</div></div>
-        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 4"><div class="meta">Office Fitout</div></div>
-        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 5"><div class="meta">Minimal Bedroom</div></div>
-        <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 6"><div class="meta">Showroom</div></div>
-      </div>
-    </section>
-
-    <!-- team / testimonial -->
-    <section class="card" style="margin-top:18px">
-      <h3 style="margin-top:0">Team & Testimonials</h3>
-      <div style="display:flex;gap:12px;align-items:center;margin-top:12px">
-        <div class="team-member"><div class="avatar">NE</div><div><strong>Neo</strong><div class="muted">Founder / Lead Designer</div></div></div>
-        <div style="flex:1" class="muted">“ZYORA transformed our small apartment into a calm, functional home. Great drawings and contractor-ready details.” — Client A</div>
-      </div>
-    </section>
-
-    <footer>
-      © <strong>ZYORA Studio</strong> 2025 · Kannur, Kerala · <a href="https://www.instagram.com/zyora.design" target="_blank">@zyora.design</a>
-    </footer>
+    <footer style="margin-top:28px;text-align:center;color:var(--muted)">© ZYORA Studio 2025 · Kannur · <a href="https://www.instagram.com/zyora.design" target="_blank" rel="noopener">@zyora.design</a></footer>
   </div>
 
-  <!-- -------------------------
-       JS: country picker + form submit (Apps Script)
-       ------------------------- -->
   <script>
   (function(){
-    // Apps Script URL: your deployed web app
+    // --------- CONFIG ----------
     const scriptURL = "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
 
-    // Elements
+    // --------- DOM ----------
     const countrySelect = document.getElementById('countrySelect');
     const countryMenu = document.getElementById('countryMenu');
     const countryFlag = document.getElementById('countryFlag');
@@ -301,18 +187,20 @@
     const phoneHint = document.getElementById('phoneHint');
     const form = document.getElementById('contact-form');
 
-    // Country metadata (extendable)
+    const budgetSelect = document.getElementById('budgetSelect');
+    const budgetOther  = document.getElementById('budgetOther');
+
+    // --------- country data (extend as needed) ----------
     const COUNTRIES = [
       { code:"+91", iso:"IN", name:"India", flag:"🇮🇳", min:10, max:12 },
       { code:"+1",  iso:"US", name:"United States", flag:"🇺🇸", min:10, max:10 },
       { code:"+44", iso:"GB", name:"United Kingdom", flag:"🇬🇧", min:10, max:10 },
       { code:"+61", iso:"AU", name:"Australia", flag:"🇦🇺", min:9, max:9 },
       { code:"+971",iso:"AE", name:"UAE", flag:"🇦🇪", min:9, max:9 },
-      { code:"+49", iso:"DE", name:"Germany", flag:"🇩🇪", min:10, max:11 },
-      // add more here as needed
+      { code:"+49", iso:"DE", name:"Germany", flag:"🇩🇪", min:10, max:11 }
     ];
 
-    // build menu dynamically (if not already)
+    // populate menu (replace static if present)
     function buildMenu(){
       countryMenu.innerHTML = '';
       COUNTRIES.forEach(c=>{
@@ -320,7 +208,7 @@
         li.dataset.code = c.code;
         li.dataset.iso = c.iso;
         li.textContent = `${c.flag} ${c.name} (${c.code})`;
-        li.addEventListener('click', () => {
+        li.addEventListener('click', ()=>{
           chooseCountry(c);
           countryMenu.style.display = 'none';
           countryMenu.setAttribute('aria-hidden','true');
@@ -338,7 +226,7 @@
     }
 
     // toggle menu
-    countrySelect.addEventListener('click', (e)=>{
+    countrySelect.addEventListener('click', ()=>{
       const open = countryMenu.style.display === 'block';
       countryMenu.style.display = open ? 'none' : 'block';
       countryMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
@@ -355,6 +243,7 @@
     // phone helpers
     function cleanDigits(raw){ return (raw||'').replace(/[^\d]/g,''); }
     function getMeta(code){ return COUNTRIES.find(c=>c.code===code) || {min:6,max:15}; }
+
     function updatePhoneHint(){
       const code = countryHidden.value || countryCode.textContent || '+91';
       const meta = getMeta(code);
@@ -371,10 +260,25 @@
         phoneInput.classList.add('invalid');
       }
     }
-
     phoneInput.addEventListener('input', updatePhoneHint);
 
-    // try detect browser country
+    // budget select behavior
+    budgetSelect.addEventListener('change', ()=>{
+      if (budgetSelect.value === 'Other') {
+        budgetOther.style.display = 'block';
+        budgetOther.focus();
+      } else {
+        budgetOther.style.display = 'none';
+        budgetOther.value = '';
+      }
+    });
+    function getFinalBudgetValue(){
+      if (!budgetSelect) return '';
+      if (budgetSelect.value === 'Other') return (budgetOther.value || '').trim();
+      return budgetSelect.value || '';
+    }
+
+    // detect browser country (best-effort)
     (function detect(){
       try {
         const lang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
@@ -385,23 +289,25 @@
       } catch(e){}
     })();
 
-    // form submit
+    // submit handler
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
+
       const rawPhone = phoneInput.value || '';
       const digits = cleanDigits(rawPhone);
       const countryVal = countryHidden.value || countryCode.textContent || '+91';
       const meta = getMeta(countryVal);
       if (digits.length < meta.min || digits.length > meta.max) {
-        phoneHint.textContent = `Please enter a valid phone number for ${countryVal}.`;
+        phoneHint.textContent = `Please enter a valid phone for ${countryVal}.`;
         phoneInput.focus();
         return;
       }
 
-      // assemble form data
+      // prepare form data and include final budget
       const fd = new FormData(form);
-      fd.set('phone', digits);
-      fd.set('country', countryVal);
+      fd.set('phone', digits);                     // digits only
+      fd.set('country', countryVal);               // e.g. +91
+      fd.set('budget', getFinalBudgetValue());     // final budget value
 
       const btn = form.querySelector('button[type="submit"]');
       const old = btn.textContent;
@@ -409,24 +315,23 @@
       btn.disabled = true;
 
       try {
-        // using no-cors so browser doesn't block; Apps Script receives the form body
-        await fetch(scriptURL, { method:'POST', body: fd, mode:'no-cors' });
+        // using no-cors so browser doesn't block; Apps Script will still receive the body
+        await fetch(scriptURL, { method: 'POST', body: fd, mode: 'no-cors' });
 
-        alert('Thanks — your enquiry has been sent!');
+        alert('Thanks — your enquiry was sent!');
         form.reset();
-        // reset to default
         chooseCountry(COUNTRIES[0]);
         phoneHint.textContent = '';
-      } catch(err){
-        console.error(err);
-        alert('Network error — try again or email zestyneo@gmail.com');
+      } catch (err) {
+        console.error('submit error', err);
+        alert('Network error — please try again or email zestyneo@gmail.com');
       } finally {
         btn.textContent = old;
         btn.disabled = false;
       }
     });
 
-    // initial
+    // init
     chooseCountry(COUNTRIES[0]);
     updatePhoneHint();
   })();
