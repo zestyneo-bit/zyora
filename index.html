@@ -2,97 +2,159 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>ZYORA Studio — Contact & Portfolio</title>
+  <title>ZYORA Studio — Interiors & Architecture</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="ZYORA Studio — Interior & Architectural design. Contact us." />
+  <meta name="description" content="ZYORA — Interior & Architectural design studio. Contemporary residential and commercial design." />
   <style>
     :root{
-      --bg:#030617; --card:#071018; --muted:#9aa4ad; --accent:#38bdf8; --glass: rgba(255,255,255,0.03);
-      --radius:12px; --maxw:1100px; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      --bg:#030617; --card:#071018; --muted:#9aa4ad; --accent:#38bdf8; --accent-2:#4bb3ff;
+      --glass: rgba(255,255,255,0.03); --radius:14px; --maxw:1200px; --pad:20px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color-scheme: dark; color:#e6eef6;
     }
     *{box-sizing:border-box}
-    body{margin:0; min-height:100vh; background:linear-gradient(180deg,#051026,#020617); color:#e6eef6; -webkit-font-smoothing:antialiased}
-    .container{max-width:var(--maxw); margin:0 auto; padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
-    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#00d4ff,#3b8fff);display:flex;align-items:center;justify-content:center;font-weight:800;color:#001}
-    .lead{color:var(--muted); font-size:13px; margin:0}
+    html,body{height:100%; margin:0; background:linear-gradient(180deg,#07101a 0%, #020617 100%); -webkit-font-smoothing:antialiased;}
+    a{color:var(--accent)}
+    .container{max-width:var(--maxw); margin:0 auto; padding:36px var(--pad);}
 
-    main{display:grid;grid-template-columns:1fr 400px;gap:18px}
-    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; padding:18px; border:1px solid var(--glass)}
-    h1,h2,h3{margin:0 0 8px 0}
+    header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:28px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,#00d4ff,#3b8fff);display:flex;align-items:center;justify-content:center;color:#012;font-weight:800}
+    .site-title h1{margin:0;font-size:18px}
+    .site-title p{margin:0;color:var(--muted);font-size:13px}
 
-    /* portfolio */
-    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-    .portfolio-item{border-radius:10px;overflow:hidden;min-height:120px}
+    nav .links{display:flex;gap:10px;align-items:center}
+    nav .links a{font-size:14px;color:var(--muted);padding:8px 10px;border-radius:8px}
+
+    /* hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:stretch;margin-bottom:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid var(--glass); border-radius:14px; padding:18px; box-shadow:0 18px 40px rgba(0,0,0,0.6)}
+    .hero-left h2{margin:0 0 8px 0;font-size:28px}
+    .hero-left p.lead{color:var(--muted);margin:0 0 14px 0}
+
+    /* services */
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+    .service{padding:14px;border-radius:12px;background:rgba(255,255,255,0.01);border:1px solid rgba(255,255,255,0.02)}
+    .service h4{margin:8px 0 6px 0}
+    .service p{margin:0;color:var(--muted);font-size:14px}
+
+    /* portfolio grid */
+    .portfolio-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+    .portfolio-item{position:relative;overflow:hidden;border-radius:10px;min-height:160px;cursor:pointer;transform:translateY(8px);opacity:0;transition:all 600ms cubic-bezier(.2,.9,.2,1)}
+    .portfolio-item.show{transform:none;opacity:1}
     .portfolio-item img{width:100%;height:100%;object-fit:cover;display:block}
+    .portfolio-item .meta{position:absolute;left:12px;bottom:12px;color:#fff;background:rgba(0,0,0,0.45);padding:6px 8px;border-radius:8px;font-weight:600}
 
-    /* contact form */
+    /* contact */
     form label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
     input,textarea,select{width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.04);background:var(--card);color:var(--muted);font-size:14px}
-    textarea{min-height:120px;resize:vertical}
+    textarea{min-height:110px;resize:vertical}
     .row{display:flex;gap:12px}
     .col{flex:1}
+    button[type="submit"]{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#021224;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
 
-    /* country selector + phone */
+    /* country/phone */
     .phone-row{display:flex;gap:10px;align-items:center}
-    .country-select{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:var(--card);cursor:pointer;min-width:140px;position:relative}
-    .country-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;z-index:120;background:var(--card);border-radius:10px;padding:6px;max-height:280px;overflow:auto;border:1px solid rgba(255,255,255,0.03)}
+    .country-select{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:var(--card);cursor:pointer;position:relative;min-width:140px}
+    .country-menu{display:none;position:absolute;top:calc(100% + 8px);left:0;z-index:200;background:var(--card);border-radius:10px;padding:6px;max-height:320px;overflow:auto;border:1px solid rgba(255,255,255,0.03)}
     .country-menu li{list-style:none;padding:8px;border-radius:6px;cursor:pointer;color:var(--muted)}
     .country-menu li:hover{background:rgba(255,255,255,0.02);color:#fff}
     .phone-hint{font-size:13px;color:#f3b0b0;min-height:18px;margin-top:6px}
 
-    button[type="submit"]{background:linear-gradient(90deg,var(--accent),#4bb3ff);color:#021224;border:0;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+    /* budget */
     .muted{color:var(--muted);font-size:13px}
 
-    @media(max-width:980px){
-      main{grid-template-columns:1fr}
-      .portfolio-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:640px){
-      .portfolio-grid{grid-template-columns:1fr}
-      .row{flex-direction:column}
-    }
+    /* footer */
+    footer{margin-top:28px;text-align:center;color:var(--muted);font-size:13px}
+
+    @media (max-width:1024px){ .hero{grid-template-columns:1fr} .services{grid-template-columns:repeat(2,1fr)} .portfolio-grid{grid-template-columns:repeat(2,1fr)} }
+    @media (max-width:640px){ .portfolio-grid{grid-template-columns:1fr} .row{flex-direction:column} }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <div style="display:flex;align-items:center;gap:12px">
+      <div class="brand">
         <div class="logo">ZY</div>
-        <div>
-          <h1 style="margin:0">ZYORA Studio</h1>
-          <p class="lead">Architecture & Interiors — Kannur · zestyneo@gmail.com</p>
+        <div class="site-title">
+          <h1>ZYORA Studio</h1>
+          <p class="lead">Interiors & Architecture — Kannur · zestyneo@gmail.com</p>
         </div>
       </div>
       <nav>
-        <a href="#portfolio" class="muted" style="margin-right:12px">Portfolio</a>
-        <a href="#contact" class="muted">Contact</a>
+        <div class="links">
+          <a href="#portfolio">Portfolio</a>
+          <a href="#services">Services</a>
+          <a href="#contact">Contact</a>
+        </div>
       </nav>
     </header>
 
-    <main>
-      <!-- Left column: hero + portfolio -->
-      <section>
-        <div class="card">
-          <h2>Design that feels like home</h2>
-          <p class="muted">Contemporary interiors & architectural design. From concept to working drawings and contractor coordination.</p>
+    <section class="hero">
+      <div class="hero-left card" id="heroCard">
+        <h2>Designing functional, beautiful spaces</h2>
+        <p class="lead">We craft modern interiors & architecture — concept, drawings and site coordination. Get an estimate for your bedroom, kitchen, living or kidsroom project.</p>
 
-          <h3 style="margin-top:16px">Portfolio</h3>
-          <div id="portfolio" class="portfolio-grid">
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1549187774-b4a2ca1f2b3d?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 1"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1505691723518-36a7b7a0490f?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 2"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 3"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 4"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 5"></div>
-            <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project 6"></div>
+        <div class="services" id="services">
+          <div class="service"><div style="font-size:18px">Concept</div><h4>Concept Design</h4><p>Mood boards, layout and design intent.</p></div>
+          <div class="service"><div style="font-size:18px">Drawings</div><h4>Working Drawings</h4><p>Construction-ready plans & details.</p></div>
+          <div class="service"><div style="font-size:18px">Fitout</div><h4>Interior Fitout</h4><p>Furniture, materials & contractor coordination.</p></div>
+        </div>
+      </div>
+
+      <aside class="card">
+        <div style="height:100%;display:flex;flex-direction:column;gap:12px">
+          <div style="flex:1;background-image:url('https://images.unsplash.com/photo-1576675789289-3b3f0b16f7d5?q=80&w=1600&auto=format&fit=crop&crop=entropy'); background-size:cover; background-position:center; border-radius:8px; min-height:220px"></div>
+          <div>
+            <strong>Start your project</strong>
+            <p class="muted" style="margin:6px 0 0 0">Quick enquiry below — we'll reply with a timeline & rough estimate.</p>
           </div>
         </div>
-      </section>
+      </aside>
+    </section>
 
-      <!-- Right column: contact -->
+    <!-- services + contact -->
+    <section style="display:grid;grid-template-columns:1fr 420px;gap:18px">
+      <!-- left: portfolio -->
+      <div class="card">
+        <h3>Portfolio — Selected Rooms</h3>
+        <p class="muted">Bedroom, Kitchen, Living & Kidsroom — recent works & references.</p>
+
+        <div id="portfolio" class="portfolio-grid">
+          <!-- bedroom -->
+          <div class="portfolio-item" data-title="Bedroom">
+            <img src="https://images.unsplash.com/photo-1586105251261-72a756497a3b?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Bedroom">
+            <div class="meta">Bedroom</div>
+          </div>
+
+          <!-- kitchen -->
+          <div class="portfolio-item" data-title="Kitchen">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Kitchen">
+            <div class="meta">Kitchen</div>
+          </div>
+
+          <!-- living -->
+          <div class="portfolio-item" data-title="Living Room">
+            <img src="https://images.unsplash.com/photo-1505691723518-36a7b7a0490f?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Living room">
+            <div class="meta">Living</div>
+          </div>
+
+          <!-- kidsroom -->
+          <div class="portfolio-item" data-title="Kids Room">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Kids room">
+            <div class="meta">Kids Room</div>
+          </div>
+
+          <!-- two more placeholders -->
+          <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1549187774-b4a2ca1f2b3d?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project"></div>
+          <div class="portfolio-item"><img src="https://images.unsplash.com/photo-1487014679447-9f8336841d58?q=80&w=1200&auto=format&fit=crop&crop=entropy" alt="Project"></div>
+        </div>
+      </div>
+
+      <!-- right: contact form -->
       <aside class="card" id="contact">
         <h3>Contact / Enquiry</h3>
-        <p class="muted">Share project details. We'll reply with a timeline and rough cost estimate.</p>
+        <p class="muted">Tell us about your bedroom, kitchen, living or kidsroom project.</p>
 
         <form id="contact-form" autocomplete="on">
           <div class="row" style="margin-top:12px">
@@ -109,21 +171,14 @@
           <div style="margin-top:12px">
             <label>Country & Phone</label>
             <div class="phone-row">
-              <div id="countrySelect" class="country-select" role="button" tabindex="0" aria-haspopup="listbox" aria-expanded="false">
+              <div id="countrySelect" class="country-select" aria-haspopup="listbox" tabindex="0">
                 <span id="countryFlag">🇮🇳</span>
                 <span id="countryCode">+91</span>
                 <span style="opacity:.8">▾</span>
-
                 <ul id="countryMenu" class="country-menu" aria-hidden="true" role="listbox">
-                  <!-- static fallback; JS will rebuild menu from array -->
-                  <li data-code="+91" data-iso="IN" role="option">🇮🇳 India (+91)</li>
-                  <li data-code="+1" data-iso="US" role="option">🇺🇸 United States (+1)</li>
-                  <li data-code="+44" data-iso="GB" role="option">🇬🇧 United Kingdom (+44)</li>
-                  <li data-code="+61" data-iso="AU" role="option">🇦🇺 Australia (+61)</li>
-                  <li data-code="+971" data-iso="AE" role="option">🇦🇪 UAE (+971)</li>
+                  <!-- JS builds full menu -->
                 </ul>
               </div>
-
               <input id="phone" name="phone" type="tel" placeholder="9876543210" required />
             </div>
             <div id="phoneHint" class="phone-hint">Example: +91 98765 43210</div>
@@ -131,10 +186,9 @@
 
           <div style="margin-top:12px">
             <label for="type">Project type</label>
-            <input id="type" name="type" type="text" placeholder="2BHK / villa / office / café..." />
+            <input id="type" name="type" type="text" placeholder="Bedroom / Kitchen / Living / Kidsroom / Other" />
           </div>
 
-          <!-- Budget dropdown with Other option -->
           <div style="margin-top:12px">
             <label for="budgetSelect">Budget (optional)</label>
             <div style="display:flex;gap:8px;align-items:center">
@@ -147,7 +201,6 @@
                 <option value="₹15L+">₹15L+</option>
                 <option value="Other">Other (specify)</option>
               </select>
-
               <input id="budgetOther" name="budgetOther" type="text" placeholder="Enter your budget (e.g. ₹4,50,000)" style="display:none" />
             </div>
             <div class="muted" style="margin-top:6px">Choose a range or pick "Other" to enter a custom amount.</div>
@@ -155,10 +208,9 @@
 
           <div style="margin-top:12px">
             <label for="message">Project details</label>
-            <textarea id="message" name="message" placeholder="City, area (sqft), timeline, references..." ></textarea>
+            <textarea id="message" name="message" placeholder="Area (sqft), colors, references, timeline..." ></textarea>
           </div>
 
-          <!-- hidden country field -->
           <input type="hidden" id="country" name="country" value="+91" />
 
           <div style="margin-top:12px;display:flex;gap:12px;align-items:center">
@@ -167,17 +219,18 @@
           </div>
         </form>
       </aside>
-    </main>
+    </section>
 
-    <footer style="margin-top:28px;text-align:center;color:var(--muted)">© ZYORA Studio 2025 · Kannur · <a href="https://www.instagram.com/zyora.design" target="_blank" rel="noopener">@zyora.design</a></footer>
+    <footer>© ZYORA Studio 2025 · Kannur · <a href="https://www.instagram.com/zyora.design" target="_blank" rel="noopener">@zyora.design</a></footer>
   </div>
 
+  <!-- JS: country menu, phone validation, animation (IntersectionObserver), submit -->
   <script>
   (function(){
-    // --------- CONFIG ----------
-    const scriptURL = "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
+    // ---------- Config ----------
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec"; // your web app url
 
-    // --------- DOM ----------
+    // ---------- Elements ----------
     const countrySelect = document.getElementById('countrySelect');
     const countryMenu = document.getElementById('countryMenu');
     const countryFlag = document.getElementById('countryFlag');
@@ -186,21 +239,21 @@
     const phoneInput = document.getElementById('phone');
     const phoneHint = document.getElementById('phoneHint');
     const form = document.getElementById('contact-form');
-
     const budgetSelect = document.getElementById('budgetSelect');
-    const budgetOther  = document.getElementById('budgetOther');
+    const budgetOther = document.getElementById('budgetOther');
 
-    // --------- country data (extend as needed) ----------
+    // ---------- Country list (common ones; extendable) ----------
     const COUNTRIES = [
       { code:"+91", iso:"IN", name:"India", flag:"🇮🇳", min:10, max:12 },
-      { code:"+1",  iso:"US", name:"United States", flag:"🇺🇸", min:10, max:10 },
+      { code:"+1", iso:"US", name:"United States", flag:"🇺🇸", min:10, max:10 },
       { code:"+44", iso:"GB", name:"United Kingdom", flag:"🇬🇧", min:10, max:10 },
       { code:"+61", iso:"AU", name:"Australia", flag:"🇦🇺", min:9, max:9 },
-      { code:"+971",iso:"AE", name:"UAE", flag:"🇦🇪", min:9, max:9 },
-      { code:"+49", iso:"DE", name:"Germany", flag:"🇩🇪", min:10, max:11 }
+      { code:"+971", iso:"AE", name:"UAE", flag:"🇦🇪", min:9, max:9 },
+      { code:"+49", iso:"DE", name:"Germany", flag:"🇩🇪", min:10, max:11 },
+      { code:"+33", iso:"FR", name:"France", flag:"🇫🇷", min:9, max:9 }
     ];
 
-    // populate menu (replace static if present)
+    // build menu
     function buildMenu(){
       countryMenu.innerHTML = '';
       COUNTRIES.forEach(c=>{
@@ -226,7 +279,7 @@
     }
 
     // toggle menu
-    countrySelect.addEventListener('click', ()=>{
+    countrySelect.addEventListener('click', (e)=>{
       const open = countryMenu.style.display === 'block';
       countryMenu.style.display = open ? 'none' : 'block';
       countryMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
@@ -243,7 +296,6 @@
     // phone helpers
     function cleanDigits(raw){ return (raw||'').replace(/[^\d]/g,''); }
     function getMeta(code){ return COUNTRIES.find(c=>c.code===code) || {min:6,max:15}; }
-
     function updatePhoneHint(){
       const code = countryHidden.value || countryCode.textContent || '+91';
       const meta = getMeta(code);
@@ -262,7 +314,7 @@
     }
     phoneInput.addEventListener('input', updatePhoneHint);
 
-    // budget select behavior
+    // budget behavior
     budgetSelect.addEventListener('change', ()=>{
       if (budgetSelect.value === 'Other') {
         budgetOther.style.display = 'block';
@@ -278,7 +330,7 @@
       return budgetSelect.value || '';
     }
 
-    // detect browser country (best-effort)
+    // detect browser country
     (function detect(){
       try {
         const lang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
@@ -289,7 +341,7 @@
       } catch(e){}
     })();
 
-    // submit handler
+    // ---------- Submit handler ----------
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
 
@@ -303,11 +355,15 @@
         return;
       }
 
-      // prepare form data and include final budget
+      const finalBudget = getFinalBudgetValue();
+      const finalMessage = (document.getElementById('message')?.value || '').trim();
+
+      // prepare form data
       const fd = new FormData(form);
-      fd.set('phone', digits);                     // digits only
-      fd.set('country', countryVal);               // e.g. +91
-      fd.set('budget', getFinalBudgetValue());     // final budget value
+      fd.set('phone', digits);
+      fd.set('country', countryVal);
+      fd.set('budget', finalBudget);
+      fd.set('message', finalMessage);
 
       const btn = form.querySelector('button[type="submit"]');
       const old = btn.textContent;
@@ -315,21 +371,30 @@
       btn.disabled = true;
 
       try {
-        // using no-cors so browser doesn't block; Apps Script will still receive the body
-        await fetch(scriptURL, { method: 'POST', body: fd, mode: 'no-cors' });
-
+        await fetch(scriptURL, { method:'POST', body: fd, mode:'no-cors' });
         alert('Thanks — your enquiry was sent!');
         form.reset();
         chooseCountry(COUNTRIES[0]);
         phoneHint.textContent = '';
-      } catch (err) {
+      } catch(err){
         console.error('submit error', err);
-        alert('Network error — please try again or email zestyneo@gmail.com');
+        alert('Network error — try again or email zestyneo@gmail.com');
       } finally {
         btn.textContent = old;
         btn.disabled = false;
       }
     });
+
+    // ---------- Simple scroll animation for portfolio items ----------
+    const items = document.querySelectorAll('.portfolio-item');
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if (en.isIntersecting) {
+          en.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(i=>obs.observe(i));
 
     // init
     chooseCountry(COUNTRIES[0]);
