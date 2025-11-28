@@ -2,101 +2,99 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>ZYORA — Architecture & Interior Design Studio</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="ZYORA — architecture & interior design studio. Contact us for enquiries." />
   <style>
-    /* Basic dark theme layout & minimal reset */
     :root{
-      --bg:#06070a; --panel:#071018; --muted:#9aa4ad; --accent:#3bd8f8;
-      --card:#0b1216; --soft:#0f1720; --glass: rgba(255,255,255,0.03);
-      --radius:12px; --pad:16px;
-      --maxw:980px;
+      --bg:#050816; --panel:#071018; --muted:#9ca3af; --accent:#38bdf8;
+      --card:#0b1216; --glass: rgba(255,255,255,0.03); --radius:12px;
+      --maxw:1100px;
       font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      color-scheme: dark;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; background:linear-gradient(180deg,#030409 0%, #060a0f 100%);
-      color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
-      padding:28px;
+      margin:0; background:radial-gradient(circle at top,#0a1220 0%, #020617 70%);
+      color:#e6eef6; padding:28px; -webkit-font-smoothing:antialiased;
     }
 
-    .container{max-width:var(--maxw); margin:0 auto; padding:20px; display:grid; gap:18px;}
-    header{display:flex;align-items:center; gap:12px}
-    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#00d4ff,#3b8fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    .page{max-width:var(--maxw); margin:0 auto; display:block; gap:18px}
+    header{display:flex; align-items:center; gap:12px; margin-bottom:18px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#00d4ff,#3b8fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#001}
     h1{margin:0;font-size:20px}
-    p.lead{margin:0;color:var(--muted); font-size:14px}
+    p.lead{margin:0;color:var(--muted); font-size:13px}
 
-    main{display:grid;grid-template-columns:1fr; gap:16px}
+    main{display:grid; grid-template-columns:1fr 380px; gap:20px}
 
     .card{
       background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
       border:1px solid var(--glass); border-radius:var(--radius); padding:18px;
-      box-shadow:0 8px 30px rgba(0,0,0,0.6);
+      box-shadow:0 10px 40px rgba(0,0,0,0.6);
     }
 
-    /* Form layout */
+    /* Form */
     form .row{display:flex; gap:12px; margin-bottom:12px}
     form .col{flex:1; display:flex; flex-direction:column; gap:8px}
     label{font-size:13px;color:var(--muted)}
     input[type="text"], input[type="email"], input[type="tel"], textarea, select {
       background:var(--panel); border:1px solid rgba(255,255,255,0.04); color:#e6eef6;
-      padding:10px 12px; border-radius:10px; outline: none; font-size:15px;
+      padding:10px 12px; border-radius:10px; outline:none; font-size:15px;
     }
-    textarea{min-height:120px; resize:vertical; padding-top:10px}
+    textarea{min-height:120px; resize:vertical}
     button[type="submit"]{
-      background:linear-gradient(90deg,var(--accent),#55a9ff);
-      border:0; color:#021224; font-weight:700; padding:12px 18px; border-radius:10px; cursor:pointer;
-      box-shadow:0 14px 40px rgba(59,216,248,0.08);
+      background:linear-gradient(90deg,var(--accent),#4bb3ff); border:0; color:#021224; font-weight:700;
+      padding:12px 18px; border-radius:10px; cursor:pointer; box-shadow:0 14px 40px rgba(56,189,248,0.08);
     }
 
-    /* Country picker */
-    .phone-row{display:flex; gap:10px; align-items:flex-start}
-    .country-wrap{position:relative}
-    .country-toggle{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.03);cursor:pointer}
-    .country-toggle span.code{opacity:0.9}
-    #country-search{display:none; width:300px; padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04); background:var(--card); color:inherit}
-    .country-list{position:absolute; left:0; top:52px; z-index:60; width:360px; max-height:280px; overflow:auto; background:var(--card); border-radius:8px; display:none; padding:8px; border:1px solid rgba(255,255,255,0.03)}
-    .country-list .item{padding:8px; display:flex; gap:8px; border-radius:6px; align-items:center; cursor:pointer}
-    .country-list .item:hover{background:rgba(255,255,255,0.02)}
-    .country-list .item .meta{font-size:14px}
-    .phone-wrap{flex:1; display:flex; flex-direction:column}
-    .phone-hint{color:#f3b0b0; font-size:13px; min-height:18px; margin-top:6px}
-
-    /* small screens */
-    @media (max-width:720px){
-      .phone-row{flex-direction:column}
-      .country-list{width:100%}
-      #country-search{width:100%}
+    /* Compact country selector + phone */
+    .phone-row-compact{display:flex; gap:10px; align-items:center}
+    .country-select{
+      display:flex; align-items:center; gap:8px; padding:8px 10px; border-radius:8px;
+      background:var(--card); color:#fff; border:1px solid rgba(255,255,255,0.03);
+      cursor:pointer; position:relative; min-width:120px; justify-content:center;
     }
+    .country-select .chev{opacity:.7}
+    .country-menu{
+      display:none; position:absolute; top:calc(100% + 8px); left:0; z-index:120;
+      background:var(--card); border:1px solid rgba(255,255,255,0.03); border-radius:8px;
+      min-width:220px; max-height:260px; overflow:auto; padding:6px; box-shadow:0 10px 30px rgba(0,0,0,0.6);
+    }
+    .country-menu li{list-style:none; padding:8px; border-radius:6px; cursor:pointer; display:flex; gap:8px; align-items:center}
+    .country-menu li:hover{background:rgba(255,255,255,0.02)}
+    #phone{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:var(--panel);color:inherit;min-width:180px}
+    .phone-hint{color:#f3b0b0;font-size:13px; min-height:18px; margin-top:6px}
 
-    /* table preview (very small) */
-    .table-preview{margin-top:6px;border-radius:8px;overflow:hidden}
-    .table-preview .row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr; gap:8px;padding:8px;background:rgba(255,255,255,0.01);border-bottom:1px solid rgba(255,255,255,0.01)}
+    /* Right column quick info */
     .muted{color:var(--muted); font-size:13px}
+
+    @media (max-width:980px){
+      main{grid-template-columns:1fr}
+      .country-menu{min-width:100%}
+      .country-select{min-width:140px}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <header>
       <div class="logo">ZY</div>
       <div>
-        <h1>ZYORA Studio — Contact & Enquiries</h1>
-        <p class="lead">Share project details and we’ll get back with an estimate. Prefer WhatsApp? Add your number with country code.</p>
+        <h1>ZYORA Studio — Architecture & Interiors</h1>
+        <p class="lead">Share project details and we'll get back with timeline & scope. Email: <strong>zestyneo@gmail.com</strong></p>
       </div>
     </header>
 
     <main>
-      <section class="card" aria-labelledby="form-heading">
-        <h2 id="form-heading" style="margin-top:0;margin-bottom:12px">Let's talk about your space</h2>
+      <!-- Left: Form -->
+      <section class="card" aria-labelledby="contact-heading">
+        <h2 id="contact-heading" style="margin:0 0 12px 0">Contact / Enquiry</h2>
 
         <form id="contact-form" autocomplete="on">
           <div class="row">
             <div class="col">
               <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
+              <input id="name" name="name" type="text" placeholder="Your full name" required />
             </div>
             <div class="col">
               <label for="email">Email</label>
@@ -104,39 +102,55 @@
             </div>
           </div>
 
-          <div class="row phone-row">
-            <div class="country-wrap" style="width:170px">
-              <button type="button" id="country-toggle" class="country-toggle" aria-haspopup="listbox" aria-expanded="false">
-                <span id="country-flag">🇮🇳</span>
-                <span id="country-code" class="code">+91</span>
-                <span style="opacity:.7">▾</span>
-              </button>
-              <input id="country-search" placeholder="Search country (eg. India)" />
-              <div id="country-list" class="country-list" role="listbox" tabindex="-1"></div>
+          <!-- Compact country selector + phone -->
+          <div class="row" style="margin-bottom:6px">
+            <div class="col" style="flex:0 0 170px">
+              <label for="countrySelect">Country</label>
+              <div id="countrySelect" class="country-select" role="button" aria-haspopup="listbox" aria-expanded="false" tabindex="0">
+                <span id="countryFlag">🇮🇳</span>
+                <span id="countryCode">+91</span>
+                <span class="chev">▾</span>
+
+                <!-- menu (hidden by default) -->
+                <ul id="countryMenu" class="country-menu" aria-hidden="true" role="listbox">
+                  <!-- list items -->
+                  <li data-code="+91" data-iso="IN" role="option">🇮🇳 India (+91)</li>
+                  <li data-code="+1"  data-iso="US" role="option">🇺🇸 United States (+1)</li>
+                  <li data-code="+44" data-iso="GB" role="option">🇬🇧 United Kingdom (+44)</li>
+                  <li data-code="+61" data-iso="AU" role="option">🇦🇺 Australia (+61)</li>
+                  <li data-code="+971" data-iso="AE" role="option">🇦🇪 UAE (+971)</li>
+                  <li data-code="+49" data-iso="DE" role="option">🇩🇪 Germany (+49)</li>
+                  <li data-code="+33" data-iso="FR" role="option">🇫🇷 France (+33)</li>
+                  <!-- add more countries by duplicating lines -->
+                </ul>
+              </div>
             </div>
 
-            <div class="phone-wrap">
+            <div class="col" style="flex:1">
               <label for="phone">Phone number</label>
               <input id="phone" name="phone" type="tel" placeholder="9876543210" required />
-              <div id="phone-hint" class="phone-hint"></div>
+              <div id="phoneHint" class="phone-hint"></div>
             </div>
           </div>
 
           <div class="row">
             <div class="col">
               <label for="type">Project type</label>
-              <input id="type" name="type" type="text" placeholder="2BHK / villa / office / cafe..." />
+              <input id="type" name="type" type="text" placeholder="2BHK / villa / office / café..." />
             </div>
             <div class="col">
-              <label for="budget">Approx Budget (optional)</label>
+              <label for="budget">Budget (optional)</label>
               <input id="budget" name="budget" type="text" placeholder="₹ (optional)" />
             </div>
           </div>
 
           <div style="margin-bottom:12px">
             <label for="message">Project details</label>
-            <textarea id="message" name="message" placeholder="City, approx area, timeline, new build or renovation, references..." ></textarea>
+            <textarea id="message" name="message" placeholder="City, area (sqft), timeline, references..." ></textarea>
           </div>
+
+          <!-- hidden country field for form data -->
+          <input type="hidden" id="country" name="country" value="+91" />
 
           <div style="display:flex;gap:12px;align-items:center">
             <button type="submit">Send enquiry</button>
@@ -145,182 +159,170 @@
         </form>
       </section>
 
-      <section class="card">
-        <h3 style="margin:0 0 8px 0">Enquiry preview (example)</h3>
-        <div class="table-preview" aria-hidden="true">
-          <div class="row muted"><div>Timestamp</div><div>Name</div><div>Phone</div><div>Project</div></div>
-          <div class="row"><div>11/27/2025 23:40</div><div>Neo</div><div>+91 98765 43210</div><div>2BHK interior</div></div>
+      <!-- Right: Info / quick preview -->
+      <aside class="card">
+        <h3 style="margin-top:0">Quick info</h3>
+        <p class="muted">Form sends <strong>country</strong> (e.g. +91) and <strong>phone</strong> (digits only). Apps Script should combine them if you want the full number in sheet.</p>
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
+        <div class="muted">Apps Script URL (already set in code):</div>
+        <div style="word-break:break-all;margin-top:8px;color:var(--accent);font-size:13px">
+          https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec
         </div>
-      </section>
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.03);margin:12px 0" />
+        <div class="muted">What you should do in Apps Script:</div>
+        <ol style="color:var(--muted);font-size:13px;padding-left:18px">
+          <li>Receive <code>country</code> and <code>phone</code> (digits only).</li>
+          <li>Combine to full phone like: <code>+91</code> + <code>919876543210</code> or keep as you prefer.</li>
+          <li>Append to sheet (RawEnquiries recommended or keep your smart table view separate).</li>
+        </ol>
+      </aside>
     </main>
   </div>
 
-  <!-- JS: country picker, validation, submit handler -->
+  <!-- Full JS: country selector, phone cleaning, submit -->
   <script>
-  // === small country metadata list - extend if needed ===
-  const COUNTRIES = [
-    { code: "+91", iso: "IN", name: "India", flag: "🇮🇳", min: 10, max: 12 },
-    { code: "+1", iso: "US", name: "United States", flag: "🇺🇸", min: 10, max: 10 },
-    { code: "+44", iso: "GB", name: "United Kingdom", flag: "🇬🇧", min: 10, max: 10 },
-    { code: "+61", iso: "AU", name: "Australia", flag: "🇦🇺", min: 9, max: 9 },
-    { code: "+971", iso: "AE", name: "United Arab Emirates", flag: "🇦🇪", min: 9, max: 9 },
-    { code: "+81", iso: "JP", name: "Japan", flag: "🇯🇵", min: 10, max: 11 },
-    { code: "+49", iso: "DE", name: "Germany", flag: "🇩🇪", min: 10, max: 11 },
-    { code: "+33", iso: "FR", name: "France", flag: "🇫🇷", min: 9, max: 9 },
-    // add more as needed
-  ];
+  (function(){
+    // DOM refs
+    const countrySelect = document.getElementById('countrySelect');
+    const countryMenu = document.getElementById('countryMenu');
+    const countryFlag = document.getElementById('countryFlag');
+    const countryCode = document.getElementById('countryCode');
+    const countryHidden = document.getElementById('country');
+    const phoneInput = document.getElementById('phone');
+    const phoneHint = document.getElementById('phoneHint');
+    const form = document.getElementById('contact-form');
 
-  // DOM refs
-  const countryToggle = document.getElementById('country-toggle');
-  const countryList = document.getElementById('country-list');
-  const countrySearch = document.getElementById('country-search');
-  const countryFlagEl = document.getElementById('country-flag');
-  const countryCodeEl = document.getElementById('country-code');
+    // Lightweight per-country digit expectations (used for hint only)
+    const META = {
+      "+91": { iso: "IN", min:10, max:12 },
+      "+1": { iso: "US", min:10, max:10 },
+      "+44": { iso: "GB", min:10, max:10 },
+      "+61": { iso: "AU", min:9, max:9 },
+      "+971": { iso: "AE", min:9, max:9 },
+      "+49": { iso: "DE", min:10, max:11 },
+      "+33": { iso: "FR", min:9, max:9 }
+    };
 
-  const phoneInput = document.getElementById('phone');
-  const phoneHint = document.getElementById('phone-hint');
-  const form = document.getElementById('contact-form');
+    // Toggle menu
+    countrySelect.addEventListener('click', (e) => {
+      const open = countryMenu.style.display === 'block';
+      countryMenu.style.display = open ? 'none' : 'block';
+      countryMenu.setAttribute('aria-hidden', open ? 'true' : 'false');
+    });
 
-  let selectedCountry = COUNTRIES[0];
-
-  // Build the country list UI
-  function buildCountryList(filter = '') {
-    countryList.innerHTML = '';
-    const q = (filter || '').trim().toLowerCase();
-    COUNTRIES.forEach(c => {
-      const label = `${c.flag} ${c.name} ${c.code}`;
-      if (!q || label.toLowerCase().includes(q) || c.code.includes(q) || c.iso.toLowerCase() === q) {
-        const item = document.createElement('div');
-        item.className = 'item';
-        item.dataset.code = c.code;
-        item.innerHTML = `<div style="font-size:18px">${c.flag}</div>
-                          <div class="meta" style="margin-left:8px;">
-                            <div style="font-weight:600">${c.name} <small style="opacity:.7">${c.code}</small></div>
-                          </div>`;
-        item.onclick = () => { chooseCountry(c); hideCountryList(); };
-        countryList.appendChild(item);
+    // Close menu on outside click or Escape
+    document.addEventListener('click', (e) => {
+      if (!countrySelect.contains(e.target) && !countryMenu.contains(e.target)) {
+        countryMenu.style.display = 'none';
+        countryMenu.setAttribute('aria-hidden','true');
       }
     });
-  }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        countryMenu.style.display = 'none';
+        countryMenu.setAttribute('aria-hidden','true');
+      }
+    });
 
-  function chooseCountry(c) {
-    selectedCountry = c;
-    countryFlagEl.textContent = c.flag;
-    countryCodeEl.textContent = c.code;
-    phoneHint.textContent = `Expected digits: ${c.min}–${c.max}`;
-  }
+    // When user picks a country
+    countryMenu.querySelectorAll('li').forEach(li => {
+      li.addEventListener('click', () => {
+        const code = li.dataset.code;
+        const text = li.textContent.trim();
+        const flag = text.split(' ')[0] || '';
+        countryFlag.textContent = flag;
+        countryCode.textContent = code;
+        countryHidden.value = code;
+        countryMenu.style.display = 'none';
+        countryMenu.setAttribute('aria-hidden','true');
+        updatePhoneHint();
+      });
+    });
 
-  function showCountryList() {
-    countryList.style.display = 'block';
-    countrySearch.style.display = 'block';
-    countrySearch.value = '';
-    countrySearch.focus();
-    buildCountryList();
-    countryToggle.setAttribute('aria-expanded','true');
-  }
-  function hideCountryList() {
-    countryList.style.display = 'none';
-    countrySearch.style.display = 'none';
-    countryToggle.setAttribute('aria-expanded','false');
-  }
+    // Try detect country from browser language
+    (function tryDetect(){
+      try {
+        const lang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+        if (!lang) return;
+        const iso = lang.split(/[-_]/).pop().toUpperCase();
+        const found = Array.from(countryMenu.querySelectorAll('li')).find(li => li.dataset.iso === iso);
+        if (found) found.click();
+      } catch(e){}
+    })();
 
-  function detectBrowserCountry() {
-    const lang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
-    if (!lang) return null;
-    const parts = lang.split(/[-_]/);
-    if (parts.length > 1) {
-      const iso = parts.pop().toUpperCase();
-      const found = COUNTRIES.find(c => c.iso === iso);
-      if (found) return found;
+    // Helpers
+    function cleanDigits(raw){ return (raw || '').replace(/[^\d]/g,''); }
+    function getMetaFor(code){ return META[code] || {min:6, max:15}; }
+    function updatePhoneHint(){
+      const code = countryHidden.value || countryCode.textContent || '+91';
+      const meta = getMetaFor(code);
+      const digits = cleanDigits(phoneInput.value || '');
+      const len = digits.length;
+      if (!digits) { phoneHint.textContent = `Example: ${code} 98765 43210`; return; }
+      if (len >= meta.min && len <= meta.max) {
+        // pretty format small: for IN show 5-5
+        let pretty = digits;
+        if (code === '+91' && digits.length === 10) pretty = digits.slice(0,5) + ' ' + digits.slice(5);
+        else if (digits.length > 6) pretty = digits.slice(0,3) + ' ' + digits.slice(3,6) + ' ' + digits.slice(6);
+        phoneHint.textContent = `Looks good: ${code} ${pretty}`;
+        phoneInput.classList.remove('invalid');
+      } else {
+        phoneHint.textContent = `Invalid length for ${code} (expected ${meta.min}–${meta.max} digits).`;
+        phoneInput.classList.add('invalid');
+      }
     }
-    return null;
-  }
 
-  function cleanPhoneDigits(raw) {
-    return (raw || '').replace(/[^\d]/g, '');
-  }
-  function validatePhoneForCountry(digits, country) {
-    const len = digits.length;
-    return (len >= (country.min || 6) && len <= (country.max || 15));
-  }
-  function prettyFormat(country, digits) {
-    if (!digits) return country.code + ' ';
-    if (country.iso === 'IN' && digits.length === 10) {
-      return `${country.code} ${digits.slice(0,5)} ${digits.slice(5)}`;
-    }
-    if (digits.length <= 4) return `${country.code} ${digits}`;
-    if (digits.length <= 7) return `${country.code} ${digits.slice(0,3)} ${digits.slice(3)}`;
-    return `${country.code} ${digits.slice(0,3)} ${digits.slice(3,6)} ${digits.slice(6)}`;
-  }
+    phoneInput.addEventListener('input', updatePhoneHint);
 
-  // events
-  countryToggle.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (countryList.style.display === 'block') hideCountryList(); else showCountryList();
-  });
-  countrySearch.addEventListener('input', () => buildCountryList(countrySearch.value));
-  document.addEventListener('click', (e) => {
-    if (!countryToggle.contains(e.target) && !countryList.contains(e.target) && e.target !== countrySearch) hideCountryList();
-  });
+    // Submit handler: sends country + digits
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
 
-  phoneInput.addEventListener('input', () => {
-    const digits = cleanPhoneDigits(phoneInput.value);
-    if (!digits) { phoneHint.textContent = ''; phoneInput.classList.remove('invalid'); return; }
-    const ok = validatePhoneForCountry(digits, selectedCountry);
-    const pretty = prettyFormat(selectedCountry, digits);
-    phoneHint.textContent = ok ? `Looks good: ${pretty}` : `Invalid length. Expected ${selectedCountry.min}–${selectedCountry.max} digits. Example: ${pretty}`;
-    phoneInput.classList.toggle('invalid', !ok);
-  });
-
-  // init country
-  const detected = detectBrowserCountry();
-  if (detected) chooseCountry(detected); else chooseCountry(selectedCountry);
-  buildCountryList();
-
-  // ---- SUBMIT HANDLER (sends to Google Apps Script) ----
-  const scriptURL = "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
-
-  if (form) {
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // read values
+      // prepare values
       const rawPhone = phoneInput.value || '';
-      const digits = cleanPhoneDigits(rawPhone);
-      if (!validatePhoneForCountry(digits, selectedCountry)) {
-        phoneHint.textContent = `Please enter a valid phone for ${selectedCountry.name}. Example: ${prettyFormat(selectedCountry, digits)}`;
+      const digits = cleanDigits(rawPhone);
+      const countryVal = countryHidden.value || countryCode.textContent || '+91';
+      const meta = getMetaFor(countryVal);
+      if (digits.length < meta.min || digits.length > meta.max) {
+        phoneHint.textContent = `Please enter a valid phone for ${countryVal}.`;
         phoneInput.focus();
         return;
       }
 
-      // prepare payload
+      // create form data and send
       const fd = new FormData(form);
-      // override phone + add country so Apps Script can combine or use as-is
+      // ensure server receives digits + country
       fd.set('phone', digits);
-      fd.set('country', selectedCountry.code);
+      fd.set('country', countryVal);
 
       const btn = form.querySelector('button[type="submit"]');
-      const oldText = btn.textContent;
+      const old = btn.textContent;
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
       try {
-        // use no-cors to avoid CORS blocking; Apps Script will receive form data
+        // use no-cors so browser doesn't block (Apps Script still receives it)
         await fetch(scriptURL, { method: 'POST', body: fd, mode: 'no-cors' });
 
         alert('Thank you — enquiry sent!');
         form.reset();
-        chooseCountry(detected || selectedCountry);
+        // reset UI to default country
+        document.querySelector('#countryMenu li[data-code="+91"]')?.click();
         phoneHint.textContent = '';
       } catch (err) {
         console.error(err);
-        alert('Network error — try again or email zestyneo@gmail.com');
+        alert('Network error — please try again or email zestyneo@gmail.com');
       } finally {
-        btn.textContent = oldText;
+        btn.textContent = old;
         btn.disabled = false;
       }
     });
-  }
+
+    // initial hint
+    updatePhoneHint();
+  })();
   </script>
 </body>
 </html>
