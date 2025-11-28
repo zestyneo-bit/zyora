@@ -1,1235 +1,326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>ZYORA | Architecture & Interior Design Studio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="ZYORA is an architecture and interior design studio crafting modern, functional spaces for homes, offices and commercial projects."
-  />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ZYORA — Architecture & Interior Design Studio</title>
+  <meta name="description" content="ZYORA — architecture & interior design studio. Contact us for enquiries." />
   <style>
-    :root {
-      --bg: #050816;
-      --bg-elevated: #0b1120;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --text: #e5e7eb;
-      --muted: #9ca3af;
-      --border: #1f2937;
-      --radius: 1.4rem;
-      --shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: radial-gradient(circle at top, #111827 0, #020617 55%);
-      color: var(--text);
-      line-height: 1.6;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .page {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 18px 16px 60px;
-    }
-
-    /* Header / Nav */
-
-    header {
-      position: sticky;
-      top: 10px;
-      z-index: 50;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      padding: 10px 16px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      backdrop-filter: blur(18px);
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 1rem;
-      background: radial-gradient(circle at 20% 0, #38bdf8, #0f172a 70%);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .logo-text span:first-child {
-      font-size: 14px;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .logo-text span:last-child {
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      font-size: 13px;
-      align-items: center;
-    }
-
-    .nav-links a {
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid transparent;
-      color: var(--muted);
-    }
-
-    .nav-links a:hover {
-      border-color: rgba(148, 163, 184, 0.5);
-      color: var(--text);
-    }
-
-    .btn-pill {
-      padding: 7px 13px;
-      border-radius: 999px;
-      border: none;
-      font-size: 13px;
-      cursor: pointer;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, #38bdf8, #0ea5e9);
-      color: #020617;
-      box-shadow: 0 16px 40px rgba(56, 189, 248, 0.45);
-    }
-
-    .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 22px 55px rgba(56, 189, 248, 0.6);
-    }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--text);
-    }
-
-    /* Mobile nav */
-
-    .nav-toggle {
-      display: none;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      background: transparent;
-      border-radius: 999px;
-      padding: 6px 10px;
-      font-size: 12px;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    .nav-toggle span {
-      display: inline-block;
-      margin-left: 6px;
-      font-size: 16px;
-    }
-
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        right: 12px;
-        top: 52px;
-        flex-direction: column;
-        align-items: flex-start;
-        background: rgba(15, 23, 42, 0.98);
-        padding: 10px 12px;
-        border-radius: 1rem;
-        border: 1px solid rgba(148, 163, 184, 0.4);
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .nav-toggle {
-        display: inline-flex;
-        align-items: center;
-      }
-    }
-
-    /* Layout */
-
-    main {
-      margin-top: 26px;
-      display: flex;
-      flex-direction: column;
-      gap: 70px;
-    }
-
-    section {
-      scroll-margin-top: 90px;
-    }
-
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .section-title {
-      font-size: 22px;
-    }
-
-    .section-sub {
-      font-size: 13px;
-      color: var(--muted);
-      max-width: 360px;
-    }
-
-    /* Hero */
-
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 34px;
-      align-items: center;
-    }
-
-    .hero-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      background: rgba(15, 23, 42, 0.92);
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .hero-pill-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #22c55e;
-      box-shadow: 0 0 14px #22c55e;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 4vw, 38px);
-      line-height: 1.07;
-      margin-bottom: 14px;
-    }
-
-    .hero h1 span {
-      color: var(--accent);
-    }
-
-    .hero-sub {
-      font-size: 14px;
-      color: var(--muted);
-      max-width: 440px;
-      margin-bottom: 22px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .hero-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 12px;
-      color: var(--muted);
-    }
-
-    .hero-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .hero-meta span::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(148, 163, 184, 0.8);
-    }
-
-    .hero-visual {
-      border-radius: var(--radius);
-      background: radial-gradient(circle at 0 0, #38bdf8 0, #020617 40%);
-      padding: 18px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      box-shadow: var(--shadow);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-visual-inner {
-      border-radius: 1.1rem;
-      background: linear-gradient(145deg, #020617, #020617 35%, #020617 100%);
-      padding: 16px;
-      display: grid;
-      grid-template-rows: auto 1fr;
-      gap: 12px;
-      min-height: 250px;
-    }
-
-    .hero-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .hero-dots {
-      display: flex;
-      gap: 5px;
-    }
-
-    .hero-dots span {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #1f2937;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.45fr 1fr;
-      gap: 12px;
-      align-items: stretch;
-    }
-
-    .hero-main-img {
-      border-radius: 1rem;
-      background-image: url("https://images.pexels.com/photos/6585763/pexels-photo-6585763.jpeg?auto=compress&cs=tinysrgb&w=1200");
-      background-size: cover;
-      background-position: center;
-      min-height: 190px;
-    }
-
-    .hero-side {
-      display: grid;
-      gap: 10px;
-    }
-
-    .hero-tag {
-      padding: 7px 9px;
-      border-radius: 0.9rem;
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    .hero-tag strong {
-      display: block;
-      color: var(--text);
-      font-size: 12px;
-      margin-bottom: 2px;
-    }
-
-    .hero-stat {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 8px 10px;
-      border-radius: 0.9rem;
-      background: linear-gradient(
-        135deg,
-        rgba(56, 189, 248, 0.2),
-        rgba(15, 23, 42, 0.96)
-      );
-      border: 1px solid rgba(56, 189, 248, 0.5);
-      font-size: 11px;
-    }
-
-    .hero-stat strong {
-      font-size: 18px;
-    }
-
-    .hero-float {
-      position: absolute;
-      bottom: 16px;
-      left: 18px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(15, 23, 42, 0.95);
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-    }
-
-    .hero-float span {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-      box-shadow: 0 0 14px rgba(56, 189, 248, 0.9);
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* Grids */
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 16px;
-    }
-
-    @media (max-width: 800px) {
-      .grid-3 {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 640px) {
-      .grid-3,
-      .grid-2 {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* Cards */
-
-    .card {
-      padding: 16px;
-      border-radius: 1.1rem;
-      background: radial-gradient(circle at top, #020617 0, #020617 55%);
-      border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.85);
-    }
-
-    .card h3 {
-      font-size: 14px;
-      margin-bottom: 6px;
-    }
-
-    .card p {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 8px;
-    }
-
-    .badge-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent);
-    }
-
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 10px;
-    }
-
-    .chip {
-      padding: 4px 9px;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      font-size: 11px;
-      color: var(--muted);
-    }
-
-    /* Projects */
-
-    .project-img {
-      border-radius: 0.9rem;
-      height: 160px;
-      background-size: cover;
-      background-position: center;
-      margin-bottom: 10px;
-    }
-
-    .project-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 11px;
-      color: var(--muted);
-      margin-bottom: 6px;
-    }
-
-    /* About / Process */
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
-      gap: 18px;
-    }
-
-    .about-layout p {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 12px;
-    }
-
-    .about-list {
-      list-style: none;
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .about-list li::before {
-      content: "• ";
-      color: var(--accent);
-    }
-
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .process-step {
-      padding: 10px 11px;
-      border-radius: 0.9rem;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      font-size: 12px;
-    }
-
-    .process-step span {
-      display: inline-block;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 4px;
-    }
-
-    .process-step strong {
-      font-size: 13px;
-    }
-
-    @media (max-width: 900px) {
-      .about-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
-      .process-steps {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
-    @media (max-width: 550px) {
-      .process-steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    /* Testimonials */
-
-    .testimonial {
-      font-size: 13px;
-      color: var(--muted);
-    }
-
-    .testimonial-footer {
-      margin-top: 8px;
-      font-size: 12px;
-      color: var(--text);
-      font-weight: 500;
-    }
-
-    /* Contact */
-
-    .contact-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 850px) {
-      .contact-layout {
-        grid-template-columns: minmax(0, 1fr);
-      }
-    }
-
-    form {
-      display: grid;
-      gap: 10px;
-      font-size: 13px;
-    }
-
-    label {
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 2px;
-      display: block;
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 8px 10px;
-      border-radius: 0.8rem;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: #020617;
-      color: var(--text);
-      font-size: 13px;
-      resize: vertical;
-      min-height: 40px;
-    }
-
-    input:focus,
-    textarea:focus {
-      outline: 1px solid var(--accent);
-      border-color: var(--accent);
-    }
-
-    .contact-card {
-      padding: 14px;
-      border-radius: 1rem;
-      background: rgba(15, 23, 42, 0.96);
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      font-size: 13px;
-      color: var(--muted);
-      display: grid;
-      gap: 8px;
-    }
-
-    .contact-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 13px;
-    }
-
-    .contact-item span:first-child {
-      color: var(--text);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 8px;
-    }
-
-    .tag {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      color: var(--accent);
-    }
-
-    /* Footer */
-
-    footer {
-      margin-top: 40px;
-      padding-top: 16px;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
-      font-size: 12px;
-      color: var(--muted);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: space-between;
-    }
-
-    footer a {
-      color: var(--accent);
-      font-size: 12px;
-    }
+    /* Basic dark theme layout & minimal reset */
+    :root{
+      --bg:#06070a; --panel:#071018; --muted:#9aa4ad; --accent:#3bd8f8;
+      --card:#0b1216; --soft:#0f1720; --glass: rgba(255,255,255,0.03);
+      --radius:12px; --pad:16px;
+      --maxw:980px;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; background:linear-gradient(180deg,#030409 0%, #060a0f 100%);
+      color:#e6eef6; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      padding:28px;
+    }
+
+    .container{max-width:var(--maxw); margin:0 auto; padding:20px; display:grid; gap:18px;}
+    header{display:flex;align-items:center; gap:12px}
+    .logo{width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,#00d4ff,#3b8fff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#001;box-shadow:0 6px 30px rgba(0,0,0,0.6)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:0;color:var(--muted); font-size:14px}
+
+    main{display:grid;grid-template-columns:1fr; gap:16px}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid var(--glass); border-radius:var(--radius); padding:18px;
+      box-shadow:0 8px 30px rgba(0,0,0,0.6);
+    }
+
+    /* Form layout */
+    form .row{display:flex; gap:12px; margin-bottom:12px}
+    form .col{flex:1; display:flex; flex-direction:column; gap:8px}
+    label{font-size:13px;color:var(--muted)}
+    input[type="text"], input[type="email"], input[type="tel"], textarea, select {
+      background:var(--panel); border:1px solid rgba(255,255,255,0.04); color:#e6eef6;
+      padding:10px 12px; border-radius:10px; outline: none; font-size:15px;
+    }
+    textarea{min-height:120px; resize:vertical; padding-top:10px}
+    button[type="submit"]{
+      background:linear-gradient(90deg,var(--accent),#55a9ff);
+      border:0; color:#021224; font-weight:700; padding:12px 18px; border-radius:10px; cursor:pointer;
+      box-shadow:0 14px 40px rgba(59,216,248,0.08);
+    }
+
+    /* Country picker */
+    .phone-row{display:flex; gap:10px; align-items:flex-start}
+    .country-wrap{position:relative}
+    .country-toggle{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:var(--card);border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+    .country-toggle span.code{opacity:0.9}
+    #country-search{display:none; width:300px; padding:8px;border-radius:8px;border:1px solid rgba(255,255,255,0.04); background:var(--card); color:inherit}
+    .country-list{position:absolute; left:0; top:52px; z-index:60; width:360px; max-height:280px; overflow:auto; background:var(--card); border-radius:8px; display:none; padding:8px; border:1px solid rgba(255,255,255,0.03)}
+    .country-list .item{padding:8px; display:flex; gap:8px; border-radius:6px; align-items:center; cursor:pointer}
+    .country-list .item:hover{background:rgba(255,255,255,0.02)}
+    .country-list .item .meta{font-size:14px}
+    .phone-wrap{flex:1; display:flex; flex-direction:column}
+    .phone-hint{color:#f3b0b0; font-size:13px; min-height:18px; margin-top:6px}
+
+    /* small screens */
+    @media (max-width:720px){
+      .phone-row{flex-direction:column}
+      .country-list{width:100%}
+      #country-search{width:100%}
+    }
+
+    /* table preview (very small) */
+    .table-preview{margin-top:6px;border-radius:8px;overflow:hidden}
+    .table-preview .row{display:grid;grid-template-columns:1fr 1fr 1fr 1fr; gap:8px;padding:8px;background:rgba(255,255,255,0.01);border-bottom:1px solid rgba(255,255,255,0.01)}
+    .muted{color:var(--muted); font-size:13px}
   </style>
 </head>
 <body>
-  <div class="page">
-    <!-- NAVBAR -->
+  <div class="container">
     <header>
-      <div class="nav">
-        <div class="logo">
-          <div class="logo-mark">Z</div>
-          <div class="logo-text">
-            <span>ZYORA</span>
-            <span>Architecture & Interiors</span>
-          </div>
-        </div>
-
-        <button class="nav-toggle" id="navToggle">
-          Menu <span>☰</span>
-        </button>
-
-        <nav class="nav-links" id="navLinks">
-          <a href="#services">Services</a>
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#contact">Contact</a>
-          <a
-            href="https://www.instagram.com/zyora.design"
-            target="_blank"
-            rel="noopener"
-            >Instagram</a
-          >
-          <button
-            class="btn-pill btn-primary"
-            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
-          >
-            Book a Consultation
-          </button>
-        </nav>
+      <div class="logo">ZY</div>
+      <div>
+        <h1>ZYORA Studio — Contact & Enquiries</h1>
+        <p class="lead">Share project details and we’ll get back with an estimate. Prefer WhatsApp? Add your number with country code.</p>
       </div>
     </header>
 
     <main>
-      <!-- HERO -->
-      <section class="hero" id="top">
-        <div>
-          <div class="hero-pill">
-            <span class="hero-pill-dot"></span>
-            Tailored spaces for modern living
-          </div>
-          <h1>
-            Architecture & Interior Design<br />
-            for <span>homes</span>, <span>offices</span> and
-            <span>experiences</span>.
-          </h1>
-          <p class="hero-sub">
-            ZYORA crafts calm, minimal and function-first spaces—from 3D
-            visualizations to fully detailed drawings—so you can see your
-            project before it’s built.
-          </p>
+      <section class="card" aria-labelledby="form-heading">
+        <h2 id="form-heading" style="margin-top:0;margin-bottom:12px">Let's talk about your space</h2>
 
-          <div class="hero-actions">
-            <button
-              class="btn-pill btn-primary"
-              onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})"
-            >
-              View Selected Projects
-            </button>
-            <button
-              class="btn-pill btn-ghost"
-              onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
-            >
-              Schedule a Call
-            </button>
-          </div>
-
-          <div class="hero-meta">
-            <span>3D & 2D: 3ds Max · SketchUp · AutoCAD · V-Ray</span>
-            <span>Residential · Commercial · Interior Styling</span>
-          </div>
-        </div>
-
-        <div class="hero-visual" aria-hidden="true">
-          <div class="hero-visual-inner">
-            <div class="hero-bar">
-              <div class="hero-dots">
-                <span></span><span></span><span></span>
-              </div>
-              <div>Concept living room · ZYORA</div>
+        <form id="contact-form" autocomplete="on">
+          <div class="row">
+            <div class="col">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
             </div>
-            <div class="hero-grid">
-              <div class="hero-main-img"></div>
-              <div class="hero-side">
-                <div class="hero-tag">
-                  <strong>Warm Minimal Apartment</strong>
-                  2BHK living & dining concept with neutral palette, layered
-                  lighting and clean lines.
-                </div>
-                <div class="hero-stat">
-                  <div>
-                    <div style="font-size: 11px; color: var(--muted);">
-                      Avg. design timeline
-                    </div>
-                    <strong>3–6 weeks</strong>
-                  </div>
-                  <div style="text-align: right;">
-                    <div style="font-size:11px; color:var(--muted);">
-                      Concept to final drawings
-                    </div>
-                    <div style="font-size:12px;">Online & on-site</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="hero-float">
-              <span></span>
-              3D visuals, moodboards and working drawings in one workflow.
+            <div class="col">
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- SERVICES -->
-      <section id="services">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Services</h2>
-            <p class="section-sub">
-              From first sketch to final handover, we provide end-to-end design
-              support for residential and commercial spaces.
-            </p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div class="badge">
-              <span class="badge-dot"></span> Interior Design
-            </div>
-            <h3>Residential Interiors</h3>
-            <p>
-              Complete interior design for apartments, villas and independent
-              homes—planning, materials, lighting and furniture layouts.
-            </p>
-            <div class="chip-row">
-              <span class="chip">Space planning</span>
-              <span class="chip">Furniture layouts</span>
-              <span class="chip">Lighting concepts</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="badge">
-              <span class="badge-dot"></span> Architecture
-            </div>
-            <h3>Architectural Planning</h3>
-            <p>
-              Facade concepts, planning, and 2D drawings that balance
-              functionality, structure and aesthetics for your site context.
-            </p>
-            <div class="chip-row">
-              <span class="chip">Floor plans</span>
-              <span class="chip">Elevations</span>
-              <span class="chip">3D exteriors</span>
-            </div>
-          </article>
-
-          <article class="card">
-            <div class="badge">
-              <span class="badge-dot"></span> Visualization
-            </div>
-            <h3>3D Renders & Walkthroughs</h3>
-            <p>
-              High-quality stills and short cinematic walkthroughs to help you
-              visualise the space before execution.
-            </p>
-            <div class="chip-row">
-              <span class="chip">V-Ray / Corona</span>
-              <span class="chip">4K renders</span>
-              <span class="chip">Short videos</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <!-- PROJECTS -->
-      <section id="projects">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Selected Projects</h2>
-            <p class="section-sub">
-              A quick look at some recent residential and commercial design
-              concepts. Replace these with your own images and details.
-            </p>
-          </div>
-          <button
-            class="btn-pill btn-ghost"
-            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})"
-          >
-            Request full portfolio
-          </button>
-        </div>
-
-        <div class="grid-3">
-          <article class="card">
-            <div
-              class="project-img"
-              style="background-image:url('https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=1200');"
-            ></div>
-            <div class="project-meta">
-              <span>Minimal Living · 2BHK</span>
-              <span>Kozhikode · 2025</span>
-            </div>
-            <h3>Soft Modern Living Room</h3>
-            <p>
-              Calm neutral palette, layered warm lighting and built-in storage
-              to maximise comfort in a compact footprint.
-            </p>
-          </article>
-
-          <article class="card">
-            <div
-              class="project-img"
-              style="background-image:url('https://images.pexels.com/photos/6588294/pexels-photo-6588294.jpeg?auto=compress&cs=tinysrgb&w=1200');"
-            ></div>
-            <div class="project-meta">
-              <span>Work Cafe</span>
-              <span>2024</span>
-            </div>
-            <h3>Co-working Café Interior</h3>
-            <p>
-              Flexible seating, acoustic surfaces and subtle brand accents to
-              keep the space warm yet professional.
-            </p>
-          </article>
-
-          <article class="card">
-            <div
-              class="project-img"
-              style="background-image:url('https://images.pexels.com/photos/4041726/pexels-photo-4041726.jpeg?auto=compress&cs=tinysrgb&w=1200');"
-            ></div>
-            <div class="project-meta">
-              <span>Duplex Concept</span>
-              <span>2025</span>
-            </div>
-            <h3>Double-Height Stair Lobby</h3>
-            <p>
-              Clean vertical lines and natural light with a focus on railing
-              details and wall textures.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <!-- ABOUT & PROCESS -->
-      <section id="about">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">About ZYORA</h2>
-            <p class="section-sub">
-              A design-driven studio combining 3D visualization and technical
-              drawings so clients always know exactly what they’re getting.
-            </p>
-          </div>
-        </div>
-
-        <div class="about-layout">
-          <div class="card">
-            <h3 style="margin-bottom: 6px;">Studio</h3>
-            <p>
-              ZYORA is an architecture and interior design practice focused on
-              warm minimalism, clean geometry and practical detailing. From
-              early moodboards to final working drawings, every step is
-              documented and coordinated with your contractor.
-            </p>
-            <p>
-              We work with clients locally and remotely—sharing 3D visuals,
-              drawings and material boards online so decisions are easy and
-              clear.
-            </p>
-            <ul class="about-list">
-              <li>Software: 3ds Max, SketchUp, AutoCAD, V-Ray</li>
-              <li>Scope: Interiors, facades, planning and visualization</li>
-              <li>Deliverables: 3D renders, 2D drawings, basic BOQ support</li>
-            </ul>
-          </div>
-
-          <div>
-            <div class="card" style="margin-bottom: 14px;">
-              <h3 style="margin-bottom: 6px;">Design Process</h3>
-              <div class="process-steps">
-                <div class="process-step">
-                  <span>Step 01</span>
-                  <strong>Consult & Brief</strong>
-                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
-                    Site photos, measurements and a detailed discussion of your
-                    needs, style and budget.
-                  </p>
-                </div>
-                <div class="process-step">
-                  <span>Step 02</span>
-                  <strong>Concept & Layout</strong>
-                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
-                    Moodboards and initial layouts to lock flow, zoning and key
-                    elements.
-                  </p>
-                </div>
-                <div class="process-step">
-                  <span>Step 03</span>
-                  <strong>3D & Materials</strong>
-                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
-                    Detailed 3D views, colour palette, materials and
-                    lighting concepts.
-                  </p>
-                </div>
-                <div class="process-step">
-                  <span>Step 04</span>
-                  <strong>Drawings & Support</strong>
-                  <p style="font-size:11px; color:var(--muted); margin-top:4px;">
-                    Working drawings and basic coordination support during
-                    execution.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div class="card">
-              <h3 style="margin-bottom: 4px;">Client Notes</h3>
-              <p class="testimonial">
-                “We could see every corner of our home in 3D before we started
-                execution. It made material and lighting decisions so much
-                easier.”
-              </p>
-              <div class="testimonial-footer">
-                — Sample client, 3BHK Interior Design
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section id="contact">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Let’s talk about your space</h2>
-            <p class="section-sub">
-              Share a few details about your project and we’ll get back with an
-              approximate timeline, scope and next steps.
-            </p>
-          </div>
-        </div>
-
-        <div class="contact-layout">
-          <div class="card">
-            <form id="contact-form">
-              <div>
-                <label for="name">Name</label>
-                <input id="name" name="name" type="text" placeholder="Your full name" required />
-              </div>
-              <div>
-                <label for="email">Email</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="you@example.com"
-                  required
-                />
-              </div>
-              <div>
-                <label for="phone">Phone / WhatsApp</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="+91-XXXXXXXXXX"
-                  required
-                />
-              </div>
-              <div>
-                <label for="type">Project type</label>
-                <input
-                  id="type"
-                  name="type"
-                  type="text"
-                  placeholder="2BHK interior / villa / office / café..."
-                />
-              </div>
-              <div>
-                <label for="message">Project details</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  placeholder="City, approx. area, new build or renovation, timeline, any references..."
-                ></textarea>
-              </div>
-              <button type="submit" class="btn-pill btn-primary">
-                Send enquiry
+          <div class="row phone-row">
+            <div class="country-wrap" style="width:170px">
+              <button type="button" id="country-toggle" class="country-toggle" aria-haspopup="listbox" aria-expanded="false">
+                <span id="country-flag">🇮🇳</span>
+                <span id="country-code" class="code">+91</span>
+                <span style="opacity:.7">▾</span>
               </button>
-            </form>
+              <input id="country-search" placeholder="Search country (eg. India)" />
+              <div id="country-list" class="country-list" role="listbox" tabindex="-1"></div>
+            </div>
+
+            <div class="phone-wrap">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" placeholder="9876543210" required />
+              <div id="phone-hint" class="phone-hint"></div>
+            </div>
           </div>
 
-          <div class="contact-card">
-            <div class="contact-item">
-              <span>Email</span>
-              <span><a href="mailto:zestyneo@gmail.com">zestyneo@gmail.com</a></span>
+          <div class="row">
+            <div class="col">
+              <label for="type">Project type</label>
+              <input id="type" name="type" type="text" placeholder="2BHK / villa / office / cafe..." />
             </div>
-            <div class="contact-item">
-              <span>Instagram</span>
-              <span
-                ><a
-                  href="https://www.instagram.com/zyora.design"
-                  target="_blank"
-                  rel="noopener"
-                  >@zyora.design</a
-                ></span
-              >
-            </div>
-            <div class="contact-item">
-              <span>Location</span>
-              <span>Kannur, Kerala · Remote projects welcome</span>
-            </div>
-            <div class="tag-row">
-              <span class="tag">Concept to drawings</span>
-              <span class="tag">Online reviews & revisions</span>
-              <span class="tag">Contractor-friendly outputs</span>
+            <div class="col">
+              <label for="budget">Approx Budget (optional)</label>
+              <input id="budget" name="budget" type="text" placeholder="₹ (optional)" />
             </div>
           </div>
+
+          <div style="margin-bottom:12px">
+            <label for="message">Project details</label>
+            <textarea id="message" name="message" placeholder="City, approx area, timeline, new build or renovation, references..." ></textarea>
+          </div>
+
+          <div style="display:flex;gap:12px;align-items:center">
+            <button type="submit">Send enquiry</button>
+            <div class="muted">Or email: <strong>zestyneo@gmail.com</strong></div>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <h3 style="margin:0 0 8px 0">Enquiry preview (example)</h3>
+        <div class="table-preview" aria-hidden="true">
+          <div class="row muted"><div>Timestamp</div><div>Name</div><div>Phone</div><div>Project</div></div>
+          <div class="row"><div>11/27/2025 23:40</div><div>Neo</div><div>+91 98765 43210</div><div>2BHK interior</div></div>
         </div>
       </section>
     </main>
-
-    <!-- FOOTER -->
-    <footer>
-      <span>© <span id="year"></span> ZYORA Studio. All rights reserved.</span>
-      <span>
-        Instagram:
-        <a
-          href="https://www.instagram.com/zyora.design"
-          target="_blank"
-          rel="noopener"
-          >@zyora.design</a
-        >
-      </span>
-    </footer>
   </div>
 
+  <!-- JS: country picker, validation, submit handler -->
   <script>
-    /* ------------------------------
-        MOBILE NAV TOGGLE
-    ------------------------------- */
-    const navToggle = document.getElementById("navToggle");
-    const navLinks = document.getElementById("navLinks");
+  // === small country metadata list - extend if needed ===
+  const COUNTRIES = [
+    { code: "+91", iso: "IN", name: "India", flag: "🇮🇳", min: 10, max: 12 },
+    { code: "+1", iso: "US", name: "United States", flag: "🇺🇸", min: 10, max: 10 },
+    { code: "+44", iso: "GB", name: "United Kingdom", flag: "🇬🇧", min: 10, max: 10 },
+    { code: "+61", iso: "AU", name: "Australia", flag: "🇦🇺", min: 9, max: 9 },
+    { code: "+971", iso: "AE", name: "United Arab Emirates", flag: "🇦🇪", min: 9, max: 9 },
+    { code: "+81", iso: "JP", name: "Japan", flag: "🇯🇵", min: 10, max: 11 },
+    { code: "+49", iso: "DE", name: "Germany", flag: "🇩🇪", min: 10, max: 11 },
+    { code: "+33", iso: "FR", name: "France", flag: "🇫🇷", min: 9, max: 9 },
+    // add more as needed
+  ];
 
-    if (navToggle) {
-      navToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
-      });
-    }
+  // DOM refs
+  const countryToggle = document.getElementById('country-toggle');
+  const countryList = document.getElementById('country-list');
+  const countrySearch = document.getElementById('country-search');
+  const countryFlagEl = document.getElementById('country-flag');
+  const countryCodeEl = document.getElementById('country-code');
 
-    // Close mobile nav on link click
-    navLinks?.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navLinks.classList.remove("show");
-      });
+  const phoneInput = document.getElementById('phone');
+  const phoneHint = document.getElementById('phone-hint');
+  const form = document.getElementById('contact-form');
+
+  let selectedCountry = COUNTRIES[0];
+
+  // Build the country list UI
+  function buildCountryList(filter = '') {
+    countryList.innerHTML = '';
+    const q = (filter || '').trim().toLowerCase();
+    COUNTRIES.forEach(c => {
+      const label = `${c.flag} ${c.name} ${c.code}`;
+      if (!q || label.toLowerCase().includes(q) || c.code.includes(q) || c.iso.toLowerCase() === q) {
+        const item = document.createElement('div');
+        item.className = 'item';
+        item.dataset.code = c.code;
+        item.innerHTML = `<div style="font-size:18px">${c.flag}</div>
+                          <div class="meta" style="margin-left:8px;">
+                            <div style="font-weight:600">${c.name} <small style="opacity:.7">${c.code}</small></div>
+                          </div>`;
+        item.onclick = () => { chooseCountry(c); hideCountryList(); };
+        countryList.appendChild(item);
+      }
     });
+  }
 
-    /* ------------------------------
-        FOOTER YEAR AUTO-UPDATE
-    ------------------------------- */
-    const yearEl = document.getElementById("year");
-    if (yearEl) {
-      yearEl.textContent = new Date().getFullYear().toString();
+  function chooseCountry(c) {
+    selectedCountry = c;
+    countryFlagEl.textContent = c.flag;
+    countryCodeEl.textContent = c.code;
+    phoneHint.textContent = `Expected digits: ${c.min}–${c.max}`;
+  }
+
+  function showCountryList() {
+    countryList.style.display = 'block';
+    countrySearch.style.display = 'block';
+    countrySearch.value = '';
+    countrySearch.focus();
+    buildCountryList();
+    countryToggle.setAttribute('aria-expanded','true');
+  }
+  function hideCountryList() {
+    countryList.style.display = 'none';
+    countrySearch.style.display = 'none';
+    countryToggle.setAttribute('aria-expanded','false');
+  }
+
+  function detectBrowserCountry() {
+    const lang = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    if (!lang) return null;
+    const parts = lang.split(/[-_]/);
+    if (parts.length > 1) {
+      const iso = parts.pop().toUpperCase();
+      const found = COUNTRIES.find(c => c.iso === iso);
+      if (found) return found;
     }
+    return null;
+  }
 
-    /* ------------------------------
-        CONTACT FORM → GOOGLE SHEET
-    ------------------------------- */
-    const form = document.getElementById("contact-form");
-
-    // YOUR Google Apps Script Web App URL
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
-
-    if (form && scriptURL) {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const submitButton = form.querySelector("button[type='submit']");
-        const originalText = submitButton.textContent;
-
-        // Disable button while sending
-        submitButton.textContent = "Sending...";
-        submitButton.disabled = true;
-
-        try {
-          const formData = new FormData(form);
-
-          // Important: Send without CORS restrictions
-          await fetch(scriptURL, {
-            method: "POST",
-            body: formData,
-            mode: "no-cors",
-          });
-
-          // Success message
-          alert("Thank you! Your enquiry has been sent.");
-          form.reset();
-        } catch (error) {
-          // Error message
-          alert(
-            "Network error. Please try again or contact us at zestyneo@gmail.com."
-          );
-        } finally {
-          // Restore button
-          submitButton.textContent = originalText;
-          submitButton.disabled = false;
-        }
-      });
+  function cleanPhoneDigits(raw) {
+    return (raw || '').replace(/[^\d]/g, '');
+  }
+  function validatePhoneForCountry(digits, country) {
+    const len = digits.length;
+    return (len >= (country.min || 6) && len <= (country.max || 15));
+  }
+  function prettyFormat(country, digits) {
+    if (!digits) return country.code + ' ';
+    if (country.iso === 'IN' && digits.length === 10) {
+      return `${country.code} ${digits.slice(0,5)} ${digits.slice(5)}`;
     }
+    if (digits.length <= 4) return `${country.code} ${digits}`;
+    if (digits.length <= 7) return `${country.code} ${digits.slice(0,3)} ${digits.slice(3)}`;
+    return `${country.code} ${digits.slice(0,3)} ${digits.slice(3,6)} ${digits.slice(6)}`;
+  }
+
+  // events
+  countryToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (countryList.style.display === 'block') hideCountryList(); else showCountryList();
+  });
+  countrySearch.addEventListener('input', () => buildCountryList(countrySearch.value));
+  document.addEventListener('click', (e) => {
+    if (!countryToggle.contains(e.target) && !countryList.contains(e.target) && e.target !== countrySearch) hideCountryList();
+  });
+
+  phoneInput.addEventListener('input', () => {
+    const digits = cleanPhoneDigits(phoneInput.value);
+    if (!digits) { phoneHint.textContent = ''; phoneInput.classList.remove('invalid'); return; }
+    const ok = validatePhoneForCountry(digits, selectedCountry);
+    const pretty = prettyFormat(selectedCountry, digits);
+    phoneHint.textContent = ok ? `Looks good: ${pretty}` : `Invalid length. Expected ${selectedCountry.min}–${selectedCountry.max} digits. Example: ${pretty}`;
+    phoneInput.classList.toggle('invalid', !ok);
+  });
+
+  // init country
+  const detected = detectBrowserCountry();
+  if (detected) chooseCountry(detected); else chooseCountry(selectedCountry);
+  buildCountryList();
+
+  // ---- SUBMIT HANDLER (sends to Google Apps Script) ----
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxEzj1Bpjqr89GtlPXXB1mDsvmkr1rYwUYQz2oIm0Cdqq5WOQIVGvF6mh_R7P1pVOnu/exec";
+
+  if (form) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // read values
+      const rawPhone = phoneInput.value || '';
+      const digits = cleanPhoneDigits(rawPhone);
+      if (!validatePhoneForCountry(digits, selectedCountry)) {
+        phoneHint.textContent = `Please enter a valid phone for ${selectedCountry.name}. Example: ${prettyFormat(selectedCountry, digits)}`;
+        phoneInput.focus();
+        return;
+      }
+
+      // prepare payload
+      const fd = new FormData(form);
+      // override phone + add country so Apps Script can combine or use as-is
+      fd.set('phone', digits);
+      fd.set('country', selectedCountry.code);
+
+      const btn = form.querySelector('button[type="submit"]');
+      const oldText = btn.textContent;
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      try {
+        // use no-cors to avoid CORS blocking; Apps Script will receive form data
+        await fetch(scriptURL, { method: 'POST', body: fd, mode: 'no-cors' });
+
+        alert('Thank you — enquiry sent!');
+        form.reset();
+        chooseCountry(detected || selectedCountry);
+        phoneHint.textContent = '';
+      } catch (err) {
+        console.error(err);
+        alert('Network error — try again or email zestyneo@gmail.com');
+      } finally {
+        btn.textContent = oldText;
+        btn.disabled = false;
+      }
+    });
+  }
   </script>
 </body>
 </html>
