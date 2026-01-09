@@ -383,7 +383,6 @@
     </footer>
 
     <script>
-        // Handle radio button styling
         document.querySelectorAll('input[name="budget"]').forEach(radio => {
             radio.addEventListener('change', function() {
                 document.querySelectorAll('.radio-option').forEach(option => {
@@ -393,7 +392,6 @@
             });
         });
 
-        // Handle form submission
         document.getElementById('contact-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -402,19 +400,15 @@
             const submitBtn = document.getElementById('submit-btn');
             const successMsg = document.getElementById('success-message');
             const errorMsg = document.getElementById('error-message');
-            
-            // Hide previous messages
+
             successMsg.style.display = 'none';
             errorMsg.style.display = 'none';
-            
-            // Disable submit button
+
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
-            
-            // Get selected budget
+
             const selectedBudget = document.querySelector('input[name="budget"]:checked')?.value || 'Not specified';
-            
-            // Prepare data
+
             const data = {
                 name: formData.get('name'),
                 email: formData.get('email'),
@@ -425,7 +419,7 @@
             };
             
             try {
-                const response = await fetch('/.netlify/functions/send-to-discord', {
+                const response = await fetch('/api/send-to-discord', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
