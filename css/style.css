@@ -1,0 +1,78 @@
+/* ===== ROOT COLORS ===== */
+:root {
+  --nav-bg: #ffffff;
+  --btn-bg: #f2f2f2;
+  --btn-hover: #1f1f1f;
+  --btn-text: #1f1f1f;
+  --btn-hover-text: #ffffff;
+  --border: #e4e4e4;
+}
+
+/* ===== RESET ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  background: #ffffff;
+  color: #1f1f1f;
+}
+
+/* ===== NAVBAR ===== */
+header {
+  background: var(--nav-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+nav {
+  max-width: 1200px;
+  margin: auto;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ===== LOGO ===== */
+nav h1,
+nav .logo,
+nav strong {
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+/* ===== NAV LINKS ===== */
+nav a {
+  margin-left: 12px;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-size: 14px;
+  color: var(--btn-text);
+  background: var(--btn-bg);
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+/* ===== HOVER EFFECT ===== */
+nav a:hover {
+  background: var(--btn-hover);
+  color: var(--btn-hover-text);
+}
+
+/* ===== ACTIVE LINK (OPTIONAL) ===== */
+nav a.active {
+  background: var(--btn-hover);
+  color: var(--btn-hover-text);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  nav a {
+    padding: 6px 12px;
+    font-size: 13px;
+  }
+}

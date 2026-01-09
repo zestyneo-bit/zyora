@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - ZYORA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c2c2c;
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #2c2c2c;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #2c2c2c;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .page-header {
+            margin-top: 100px;
+            padding: 60px 0;
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            text-align: center;
+            color: white;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            color: #e0e0e0;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .hero-about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: 2.8rem;
+            color: #2c2c2c;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            color: #666;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, #2c2c2c, #666);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .hero-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .services-showcase {
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #2c2c2c, #666);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #2c2c2c, #666);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(360deg);
+        }
+
+        .service-card h3 {
+            font-size: 1.6rem;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .philosophy {
+            background: #2c2c2c;
+            color: white;
+            text-align: center;
+        }
+
+        .philosophy-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .philosophy h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            color: white;
+        }
+
+        .philosophy p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #e0e0e0;
+            margin-bottom: 2rem;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.5rem;
+            color: #ccc;
+            border-left: 4px solid white;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+
+        .process-section {
+            background: linear-gradient(135deg, #f8f8f8 0%, #e8e8e8 100%);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .process-step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: #2c2c2c;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.4rem;
+            color: #2c2c2c;
+            margin: 1rem 0;
+            font-weight: 600;
+        }
+
+        .process-step p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2c2c2c;
+            margin-bottom: 1rem;
+            font-weight: 300;
+        }
+
+        .section-title p {
+            color: #666;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-about {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">ZYORA</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Redefining Spaces</h1>
+            <p>Where architectural vision meets innovative design solutions</p>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="hero-about">
+                <div class="hero-text">
+                    <h2>Creating <span class="highlight-text">Tomorrow's</span> Architecture Today</h2>
+                    <p>ZYORA stands at the intersection of creativity and functionality, where every line drawn has purpose and every space tells a story.</p>
+                    <p>We don't just design buildings; we craft experiences that inspire, environments that energize, and spaces that stand as testaments to human ingenuity and aesthetic vision.</p>
+                </div>
+                <div class="hero-image">
+                    <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Architecture">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section services-showcase">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Creative Services</h2>
+                <p>Comprehensive design solutions tailored to transform your vision into reality</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🏗️</div>
+                    <h3>Architectural Design</h3>
+                    <p>From concept sketches to detailed blueprints, we create structures that seamlessly blend form, function, and environmental harmony.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">✨</div>
+                    <h3>Space Planning</h3>
+                    <p>Optimizing every square foot through strategic layout design that maximizes both functionality and aesthetic appeal.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🎯</div>
+                    <h3>Design Consultation</h3>
+                    <p>Expert guidance throughout your project journey, from initial ideation to final implementation and beyond.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">🌿</div>
+                    <h3>Sustainable Design</h3>
+                    <p>Environmentally conscious solutions that reduce footprint while enhancing living and working experiences.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section philosophy">
+        <div class="container">
+            <div class="philosophy-content">
+                <h2>Our Design Philosophy</h2>
+                <p>We believe that exceptional architecture emerges from the perfect balance of innovation, sustainability, and human-centered design.</p>
+                <div class="quote">
+                    "Every space should tell a story, evoke emotion, and enhance the human experience."
+                </div>
+                <p>Our approach transcends traditional boundaries, embracing cutting-edge technology while honoring timeless design principles that create lasting value and beauty.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section process-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Design Process</h2>
+                <p>A systematic approach that ensures every project achieves its full potential</p>
+            </div>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Discovery</h3>
+                    <p>Deep dive into your vision, requirements, and project goals through comprehensive consultation sessions.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Conceptualization</h3>
+                    <p>Transform ideas into initial design concepts with mood boards, sketches, and 3D visualizations.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Development</h3>
+                    <p>Refine concepts into detailed architectural plans with technical specifications and material selection.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Realization</h3>
+                    <p>Oversee construction and implementation to ensure your vision becomes reality with precision and quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 ZYORA. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
